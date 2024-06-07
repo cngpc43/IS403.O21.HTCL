@@ -31,4 +31,6 @@
 /Latex/*.xdv
 /Latex/*.fdb_latexmk
 /Latex/*.synctex\(busy\)
+code.ipynb
+desc.ipynb
 **/.DS_Store
