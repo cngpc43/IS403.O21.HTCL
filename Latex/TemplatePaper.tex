@@ -28,7 +28,7 @@
 {Author \headeretal: Phan Chi Cuong, Nguyen Le Khang, Le Pham Quoc Bao}
 
 \begin{abstract}
-  Placeholder line
+  This study investigates the effectiveness of Fast Fourier Transform (FFT), Time Series Network (TimeSNet), and Random Forest (RF) models in predicting stock prices within the Vietnamese real estate market.  We apply these models independently to historical daily closing prices of three major real estate companies from 2019 to 2024, exploring how each method contributes to understanding and forecasting stock price movements. FFT is utilized to reveal underlying periodic patterns, TimeSNet to capture temporal dependencies, and RF to provide robust predictions. The results offer insights into the strengths and weaknesses of each model for this specific market, providing valuable information for investors and policymakers.
 \end{abstract}
 
 \begin{keywords}
@@ -62,7 +62,13 @@ In another article by Bohumil Stádník, Jurgita Raudeliuniene, Vida Davidaviči
 Placeholder line
 \subsection{Dataset}
 
-The historical stock price of Quoc Cuong Gia Lai Joint Stock Company (QCG), Dat Xanh Group Joint Stock Company (DXG) and Vinhomes Joint Stock Company (VHM) from 01/03/2019 to 01/03/2024 will be applied. The data contains column such as Date, Price, Open, High, Low, Vol., Change. As the goal is to forecast close prices, only data relating to column “Close" (VND) will be processed.
+The dataset comprises historical daily closing stock prices (in Vietnamese Dong - VND) for three prominent Vietnamese real estate companies:
+ \\
+  \indent\textbullet\ Quoc Cuong Gia Lai Joint Stock Company (QCG) \\
+  \indent\textbullet\ Dat Xanh Group Joint Stock Company (DXG) \\
+  \indent\textbullet\ Vinhomes Joint Stock Company (VHM) \\
+  \\
+The data spans a five-year period from March 1, 2019, to March 1, 2024.  While the raw data includes additional attributes such as opening price, high, low, volume, and change, this study focuses solely on the "Close" price to develop predictive models for future closing price movements.
 
 \subsection{Descriptive Statistics}
 \begin{table}[H]
@@ -71,16 +77,37 @@ The historical stock price of Quoc Cuong Gia Lai Joint Stock Company (QCG), Dat 
 \begin{tabular}{|>{\columncolor{red!20}}c|c|c|c|}
     \hline
      \rowcolor{red!20} & DXG & VHM & QCG \\ \hline
-     Count & 0 & 0 & 0 \\ \hline
-     Mean & 0 & 0 & 0\\ \hline
-     Std & 0 & 0 & 0\\ \hline
-     Min & 0 & 0 & 0\\ \hline
-     25\% & 0 & 0 & 0\\ \hline
-     50\% & 0 & 0 & 0\\ \hline
-     75\% & 0 & 0 & 0\\ \hline
-     Max & 0 & 0 & 0\\ \hline
+     Observations & 0 & 0 & 1252 \\ \hline
+     Mean & 0 & 0 & 7586.17\\ \hline
+     Median & 0 & 0 & 7105\\ \hline
+     Std & 0 & 0 & 3102.55\\ \hline
+     Min & 0 & 0 & 3320\\ \hline
+     Max & 0 & 0 & 23200\\ \hline
+     25\% & 0 & 0 & 4960\\ \hline
+     50\% & 0 & 0 & 7105\\ \hline
+     75\% & 0 & 0 & 9182.5\\ \hline
+    Skewness & 0 & 0 & 1.13\\ \hline
+    Kurtosis & 0 & 0 & 1.68\\ \hline
+
+     
 \end{tabular}
 \end{table}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/QCGboxplot.png}
+  \caption{QCG stock price's boxplot}
+  \label{fig:1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/QCGhist.png}
+  \caption{QCG stock price's histogram}
+  \label{fig:2}
+  \end{minipage}
+\end{figure}
 
 
 \section{Methodology}
