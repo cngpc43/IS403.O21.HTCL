@@ -32,3 +32,4 @@
 /Latex/*.fdb_latexmk
 /Latex/*.synctex\(busy\)
 **/.DS_Store
+Models/LSTM/LSTM(7-2-1).ipynb
