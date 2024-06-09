@@ -9,6 +9,7 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{float}
+% \usepackage{caption}
 \usepackage[T1]{fontenc}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -156,23 +157,58 @@ Where:\\
 	\indent\textbullet\ \(\beta_1,..., \beta_k\) are the regression coefficients for the independent variables.\\
 	\indent\textbullet\ \(\varepsilon\) is the error term.
 
-% LSTM Model
-  \section{Methodology}
-Placeholder line
-\subsection{Long Short Term Memory (LSTM)}
-Placeholder
-\[Y=\beta_0+\beta_1X_1+\beta_2X_2+\cdots+\beta_kX_k+\varepsilon\]
-Where:\\
-	\indent\textbullet\ Y is the dependent variable (Target Variable).\\
-	\indent\textbullet\ \(X_1, X_2, \ldots, X_k\) are the independent (explanatory) variables.\\
-	\indent\textbullet\ \(\beta_0\) is the intercept term.\\
-	\indent\textbullet\ \(\beta_1,..., \beta_k\) are the regression coefficients for the independent variables.\\
-	\indent\textbullet\ \(\varepsilon\) is the error term.
+  % LSTM Introduction
+  \subsection{Long Short Term Memory (LSTM)}
 
-  % TImesNet Model
-  \section{Methodology}
-Placeholder line
-\subsection{TimesNet}
+   Long Short Term Memory networks (LSTM), often known as LSTMs, are a special type of recurrent neural network (RNN) with the ability to learn and remember long-term dependencies. LSTMs were introduced by Hochreiter and Schmidhuber in 1997, and have since been refined and developed further by many researchers and experts in the field. Thanks to their exceptional performance on various tasks, LSTMs have become increasingly popular.
+
+  LSTMs are designed to address the problem of long-term dependencies. Retaining information over extended periods is an inherent characteristic of LSTMs, requiring no special training to achieve this capability. In other words, the ability to remember long-term information is built into LSTMs.
+
+  Unlike traditional RNNs, which have a simple structure with a single tanh activation layer, LSTMs have a more complex chain-like structure, with modules that contain up to four layers interacting in a special way.
+
+  \noindent 
+  \textbf{In the \(t\)-th state of the LSTM model:}
+
+\textbf{Output}: \(c_t\), \(h_t\), where \(c\) is the cell state, and \(h\) is the hidden state.
+
+\textbf{Input}: \(c_{t-1}\), \(h_{t-1}\), \(x_t\), where \(x_t\) is the input at state \(t\) of the model, and \(c_{t-1}\) and \(h_{t-1}\) are the outputs from the previous layer. The hidden state \(h\) is similar to \(s\) in RNN, while \(c\) is the unique aspect of LSTM.
+
+\textbf{Reading the diagram}: The symbols \(\sigma\) and tanh indicate that the step uses the sigmoid and tanh activation functions, respectively. The multiplication is element-wise, and the addition is matrix addition.
+
+\textbf{Gates}: \(f_t\), \(i_t\), \(o_t\) correspond to the forget gate, input gate, and output gate, respectively.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{bibliography/Figure/LSTM Model.png}
+    \caption{LSTM Model}
+    \label{fig:1}
+  \end{minipage}
+\end{figure}
+
+
+
+\noindent \textbullet \textbf{ Forget gate}:
+\[
+f_t = \sigma(U_f \cdot x_t + W_f \cdot h_{t-1} + b_f)
+\]
+
+\noindent \textbullet \textbf{ Input gate}:
+\[
+i_t = \sigma(U_i \cdot x_t + W_i \cdot h_{t-1} + b_i)
+\]
+
+\noindent \textbullet \textbf{ Output gate}:
+\[
+o_t = \sigma(U_o \cdot x_t + W_o \cdot h_{t-1} + b_o)
+\]
+
+Thus, the expressions for each gate of the LSTM illustrate how each gate manages the information flowing in and out of the model's states.
+
+
+  % TimesNet Introduction
+  \subsection{TimesNet}
 Placeholder
 \[Y=\beta_0+\beta_1X_1+\beta_2X_2+\cdots+\beta_kX_k+\varepsilon\]
 Where:\\
@@ -182,7 +218,6 @@ Where:\\
 	\indent\textbullet\ \(\beta_1,..., \beta_k\) are the regression coefficients for the independent variables.\\
 	\indent\textbullet\ \(\varepsilon\) is the error term.
  
-
 \section{Result}
 Placeholder line
 \subsection{Evaluation Methods}
