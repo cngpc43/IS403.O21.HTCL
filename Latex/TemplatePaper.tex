@@ -252,6 +252,8 @@ Where: \\
 	\indent\textbullet\ \(y_i\)  is the true value.\\
 	\indent\textbullet\ \(\hat{y_i}\) is the predicted value.
 \subsection{DXG Dataset} 
+
+% LSTM Table
 \begin{table}[H]
   \begin{tabular}{|c|c|c|c|c|}
   \hline
@@ -264,8 +266,22 @@ Where: \\
     \label{vcbresult}
   \end{table}
 
+% TimesNet Table
+\begin{table}[H]
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+  \multirow{3}{*}{DXG}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+  \end{tabular}
+  \caption{TimesNet's Evaluation}
+    \label{vcbresult}
+  \end{table}
 
 \subsection{VHM dataset} 
+
+% LSTM Table
 \begin{table}[H]
   \begin{tabular}{|c|c|c|c|c|}
   \hline
@@ -278,8 +294,22 @@ Where: \\
     \label{vcbresult}
   \end{table}
 
+  % TimesNet Table
+  \begin{table}[H]
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+    \multirow{3}{*}{VHM}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                  & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                  & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+    \end{tabular}
+    \caption{TimesNet's Evaluation}
+      \label{vcbresult}
+    \end{table}
 
 \subsection{QCG dataset} 
+
+% LSTM Table
 \begin{table}[H]
   \begin{tabular}{|c|c|c|c|c|}
   \hline
@@ -291,6 +321,19 @@ Where: \\
   \caption{LSTM's Evaluation}
     \label{vcbresult}
   \end{table}
+
+  % TimesNet Table
+  \begin{table}[H]
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+    \multirow{3}{*}{QCG}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                  & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                  & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+    \end{tabular}
+    \caption{TimesNet's Evaluation}
+      \label{vcbresult}
+    \end{table}
 
 \section{Conclusion}
  Placeholder line
