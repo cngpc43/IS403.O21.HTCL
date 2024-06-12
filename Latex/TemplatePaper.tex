@@ -9,6 +9,7 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{float}
+% \usepackage{caption}
 \usepackage[T1]{fontenc}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -59,7 +60,6 @@ In another article by Bohumil Stádník, Jurgita Raudeliuniene, Vida Davidaviči
 
 
 \section{Materials}
-Placeholder line
 \subsection{Dataset}
 
 The dataset comprises historical daily closing stock prices (in Vietnamese Dong - VND) for three prominent Vietnamese real estate companies:
@@ -74,20 +74,20 @@ The data spans a five-year period from March 1, 2019, to March 1, 2024.  While t
 \begin{table}[H]
   \centering
   \caption{QCG, VHM, DXG’s Descriptive Statistics}
-\begin{tabular}{|>{\columncolor{red!20}}c|c|c|c|}
+\begin{tabular}{|>{\columncolor{blue!20}}c|c|c|c|}
     \hline
-     \rowcolor{red!20} & DXG & VHM & QCG \\ \hline
-     Observations & 0 & 0 & 1252 \\ \hline
-     Mean & 0 & 0 & 7586.17\\ \hline
-     Median & 0 & 0 & 7105\\ \hline
-     Std & 0 & 0 & 3102.55\\ \hline
-     Min & 0 & 0 & 3320\\ \hline
-     Max & 0 & 0 & 23200\\ \hline
-     25\% & 0 & 0 & 4960\\ \hline
-     50\% & 0 & 0 & 7105\\ \hline
-     75\% & 0 & 0 & 9182.5\\ \hline
-    Skewness & 0 & 0 & 1.13\\ \hline
-    Kurtosis & 0 & 0 & 1.68\\ \hline
+     \rowcolor{blue!20} & DXG & VHM & QCG \\ \hline
+     Observations & 1252 & 0 & 1252 \\ \hline
+     Mean & 17676 & 62065.92 & 7586.17\\ \hline
+     Median & 15348 & 61768 & 7105\\ \hline
+     Std & 7862 & 11877.69 & 3102.55\\ \hline
+     Min & 6739 & 38450 & 3320\\ \hline
+     Max & 46750 & 88722 & 23200\\ \hline
+     25\% & 12303 & 53900 & 4960\\ \hline
+     50\% & 15348 & 61768 & 7105\\ \hline
+     75\% & 20806 & 71569 & 9182.5\\ \hline
+    Skewness & 1.41 & -0.04 & 1.13\\ \hline
+    Kurtosis & 1.97 & -0.85 & 1.68\\ \hline
 
      
 \end{tabular}
@@ -108,21 +108,177 @@ The data spans a five-year period from March 1, 2019, to March 1, 2024.  While t
   \label{fig:2}
   \end{minipage}
 \end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/VHMBoxPlot.png}
+  \caption{VHM stock price's boxplot}
+  \label{fig:1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/VHMhist.png}
+  \caption{VHM stock price's histogram}
+  \label{fig:2}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/DXGBoxPlot.png}
+  \caption{DXG stock price's boxplot}
+  \label{fig:1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/DXGHistogram.png}
+  \caption{DXG stock price's histogram}
+  \label{fig:2}
+  \end{minipage}
+\end{figure}
 
 
 \section{Methodology}
-Placeholder line
+\subsection{Data Preprocessing}
+The initial dataset of daily closing stock prices was incomplete, lacking data for weekends and potentially other non-trading days, resulting in a non-consecutive time series. Recognizing the importance of a continuous time series for accurate analysis, we took steps to fill these gaps. We assumed that the market doesn't experience significant changes over non-trading days and used the closing price of the preceding Friday to fill the missing values for weekends and holidays.
+
+Furthermore, to enhance the predictive power of our models, we calculated several technical indicators from the closing prices. These indicators included Simple Moving Average (SMA), Exponential Moving Average (EMA), Relative Strength Index (RSI), Moving Average Convergence Divergence (MACD), Bollinger Bands (BB), Average True Range (ATR), and On-Balance Volume (OBV). These widely-used indicators provide valuable information about market trends, momentum, and volatility, serving as potential predictors in our linear regression model.
+
+By addressing the missing data and incorporating technical indicators, we created a more comprehensive and informative dataset for our subsequent analysis. This enhanced dataset enabled us to explore the relationships between stock prices and various market factors, ultimately contributing to the development of more accurate predictive models.
 \subsection{Linear Regression}
-Placeholder
+A linear regression model was employed to analyze the relationship between the closing price of real estate company stocks and various technical indicators. Linear regression is a statistical method that models the linear relationship between a dependent variable and one or more independent variables. In this context, the closing price of real estate stocks was chosen as the dependent variable, while several technical indicators derived from the stock's price and volume data were considered as potential independent variables.
+
+The mathematical representation of a multiple linear regression model is as follows:
 \[Y=\beta_0+\beta_1X_1+\beta_2X_2+\cdots+\beta_kX_k+\varepsilon\]
 Where:\\
-	\indent\textbullet\ Y is the dependent variable (Target Variable).\\
+	\indent\textbullet\ Y is the predicted closing price of the real estate stock. \\
 	\indent\textbullet\ \(X_1, X_2, \ldots, X_k\) are the independent (explanatory) variables.\\
 	\indent\textbullet\ \(\beta_0\) is the intercept term.\\
 	\indent\textbullet\ \(\beta_1,..., \beta_k\) are the regression coefficients for the independent variables.\\
 	\indent\textbullet\ \(\varepsilon\) is the error term.
- 
+  
+  The dataset used for this analysis included stock price data for various real estate companies, spanning a specific time period. The dataset included various technical indicators such as Simple Moving Average (SMA), Exponential Moving Average (EMA), Relative Strength Index (RSI), Moving Average Convergence Divergence (MACD), Bollinger Bands (BB\_High, BB\_Middle, BB\_Low), Average True Range (ATR), and On-Balance Volume (OBV). These indicators were selected as potential independent variables due to their established relevance in technical stock analysis.
+\subsection{Random Forest}
+Random forest is a supervised learning algorithm. The “forest” it builds is an ensemble of decision trees, usually trained with the bagging method. The general idea of the bagging method is that a combination of learning models increases the overall result.
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.5\textwidth}
+  \centering
 
+  \includegraphics[width=1\textwidth]{bibliography/Figure/RF_work.png}
+  \caption{Random forest models}
+  \label{fig:1}
+  \end{minipage}
+\end{figure}
+Random forests are also very hard to beat performance-wise. Of course, you can probably always find a model that can perform better — like a neural network, for example — but these usually take more time to develop, though they can handle a lot of different feature types, like binary, categorical and numerical.
+Overall, random forest is a (mostly) fast, simple and flexible tool, but not without some limitations.
+\subsection{GRU}
+GRU is a simplified version of LSTM (Long Short-Term Memory) and has fewer parameters, which helps reduce the time and computational resources required during model training. Both GRU and LSTM belong to the family of advanced recurrent neural network architectures that can retain information over long sequences without encountering gradient degradation issues.
+The structure of GRU consists of two main gates:
+\\
+\indent\textbullet\ Update Gate: Controls the amount of information from the previous hidden state that needs to be carried over to the current state.
+\[
+z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)
+\]
+\indent\textbullet\ Reset Gate: Decides how much of the past information to forget. \\
+\[
+r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)
+\]
+\indent\textbullet\ Current memory content : determines the potential contribution to the updated hidden state, allowing the network to retain or update information effectively.\\
+\[
+\tilde{h}_t = \tanh(W_h \cdot [r_t \odot h_{t-1}, x_t] + b_h)
+\]
+\indent\textbullet\ Final memory at current time step : is the updated hidden state that combines the previous hidden state and the new candidate hidden state based on the update gate's decision. This updated hidden state effectively balances retaining information from the past and incorporating new information from the current time step.\\
+\[
+h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
+\]
+Where:
+\begin{itemize}
+  \item \( h_t \) is the final hidden state at time step \( t \). This represents the updated memory of the network at the current time step.
+  \item \( z_t \) is the update gate vector at time step \( t \). The update gate controls how much of the previous hidden state should be carried forward to the current hidden state.
+  \item \( h_{t-1} \) is the hidden state from the previous time step \( t-1 \). This is the memory of the network from the prior time step.
+  \item \( \tilde{h}_t \) is the candidate hidden state at time step \( t \). It represents the new information that could be added to the hidden state, calculated using the current input and the reset-modified previous hidden state.
+  \item \( \odot \) represents element-wise multiplication. This operation is applied element-wise to vectors or matrices.
+  \item \( 1 - z_t \) is the complement of the update gate vector. It represents the proportion of the previous hidden state that should be retained.
+\end{itemize}
+
+Given the high correlations between the \textit{Close} price and other price-based indicators (\textit{Open}, \textit{High}, \textit{Low}, \textit{SMA\_20}, \textit{EMA\_20}, \textit{BB\_High}, \textit{BB\_Middle}, \textit{BB\_Low}), we will exclude these to avoid multicollinearity issues. The remaining indicators (\textit{Volume}, \textit{Change \%}, \textit{RSI}, \textit{MACD}, \textit{MACD\_Signal}, \textit{MACD\_Diff}, \textit{ATR}, \textit{OBV}) will be considered as potential independent variables in the linear regression model. 
+
+\begin{table}[ht]
+\centering
+\caption{Correlation Matrix of Filtered Data}
+\label{tab:correlation_matrix}
+\input{}
+\end{table}
+
+The model was then trained using the preprocessed dataset, and its performance was evaluated using appropriate metrics such as Mean Squared Error (MSE), R-squared, and adjusted R-squared.
+
+The choice of independent variables for the final model was guided by the correlation matrix (Table~\ref{tab:correlation_matrix}), which revealed the strength and direction of linear relationships between the closing price and each indicator. Variables exhibiting higher correlation with the closing price were considered more influential and were prioritized for inclusion in the model.
+
+By analyzing the estimated coefficients (\( \beta_1, \beta_2, ..., \beta_n \)) of the linear regression model, we can quantify the impact of each technical indicator on the predicted closing price of real estate stocks. This analysis provides valuable insights into the factors that drive the stock's price movements and can inform investment decisions.
+  \subsection{ARIMA}
+  \subsection{RNN}
+  % LSTM Introduction
+  \subsection{Long Short Term Memory (LSTM)}
+
+   Long Short Term Memory networks (LSTM), often known as LSTMs, are a special type of recurrent neural network (RNN) with the ability to learn and remember long-term dependencies. LSTMs were introduced by Hochreiter and Schmidhuber in 1997, and have since been refined and developed further by many researchers and experts in the field. Thanks to their exceptional performance on various tasks, LSTMs have become increasingly popular.
+
+  LSTMs are designed to address the problem of long-term dependencies. Retaining information over extended periods is an inherent characteristic of LSTMs, requiring no special training to achieve this capability. In other words, the ability to remember long-term information is built into LSTMs.
+
+  Unlike traditional RNNs, which have a simple structure with a single tanh activation layer, LSTMs have a more complex chain-like structure, with modules that contain up to four layers interacting in a special way.
+
+  \noindent 
+  \textbf{In the \(t\)-th state of the LSTM model:}
+
+\textbf{Output}: \(c_t\), \(h_t\), where \(c\) is the cell state, and \(h\) is the hidden state.
+
+\textbf{Input}: \(c_{t-1}\), \(h_{t-1}\), \(x_t\), where \(x_t\) is the input at state \(t\) of the model, and \(c_{t-1}\) and \(h_{t-1}\) are the outputs from the previous layer. The hidden state \(h\) is similar to \(s\) in RNN, while \(c\) is the unique aspect of LSTM.
+
+\textbf{Reading the diagram}: The symbols \(\sigma\) and tanh indicate that the step uses the sigmoid and tanh activation functions, respectively. The multiplication is element-wise, and the addition is matrix addition.
+
+\textbf{Gates}: \(f_t\), \(i_t\), \(o_t\) correspond to the forget gate, input gate, and output gate, respectively.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{bibliography/Figure/LSTM Model.png}
+    \caption{LSTM Model}
+    \label{fig:1}
+  \end{minipage}
+\end{figure}
+
+
+
+\noindent \textbullet \textbf{ Forget gate}:
+\[
+f_t = \sigma(U_f \cdot x_t + W_f \cdot h_{t-1} + b_f)
+\]
+
+\noindent \textbullet \textbf{ Input gate}:
+\[
+i_t = \sigma(U_i \cdot x_t + W_i \cdot h_{t-1} + b_i)
+\]
+
+\noindent \textbullet \textbf{ Output gate}:
+\[
+o_t = \sigma(U_o \cdot x_t + W_o \cdot h_{t-1} + b_o)
+\]
+
+Thus, the expressions for each gate of the LSTM illustrate how each gate manages the information flowing in and out of the model's states.
+
+
+  % TimesNet Introduction
+  \subsection{TimesNet}
+  \subsection{Fast Fourier Transform Forecasting Model (FFT)}
+
+
+ 
 \section{Result}
 Placeholder line
 \subsection{Evaluation Methods}
@@ -137,20 +293,88 @@ Where: \\
 	\indent\textbullet\ \(y_i\)  is the true value.\\
 	\indent\textbullet\ \(\hat{y_i}\) is the predicted value.
 \subsection{DXG Dataset} 
+
+% LSTM Table
 \begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|c|c|c|}
-         
-    \end{tabular}
-    \caption{DXG Dataset's Evaluation}
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+  \multirow{3}{*}{DXG}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+  \end{tabular}
+  \caption{LSTM's Evaluation}
     \label{vcbresult}
-\end{table}
+  \end{table}
+
+% TimesNet Table
+\begin{table}[H]
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+  \multirow{3}{*}{DXG}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+  \end{tabular}
+  \caption{TimesNet's Evaluation}
+    \label{vcbresult}
+  \end{table}
 
 \subsection{VHM dataset} 
 
+% LSTM Table
+\begin{table}[H]
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+  \multirow{3}{*}{VHM}          & 7-2-1                                    & 608.64                    & 46.33                    & 4.27                      \\ \cline{2-5} 
+                                & 7.5-1.5-1                                & 604.48                    & 45.81                    & 3.86                     \\ \cline{2-5} 
+                                & 8-1.50.5                                 & 399.35                    & 52.26                    & 1.95                      \\ \hline
+  \end{tabular}
+  \caption{LSTM's Evaluation}
+    \label{vcbresult}
+  \end{table}
 
+  % TimesNet Table
+  \begin{table}[H]
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+    \multirow{3}{*}{VHM}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                  & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                  & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+    \end{tabular}
+    \caption{TimesNet's Evaluation}
+      \label{vcbresult}
+    \end{table}
 
 \subsection{QCG dataset} 
+
+% LSTM Table
+\begin{table}[H]
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+  \multirow{3}{*}{QCG}          & 7-2-1                                    & 316.45                    & 49.08                    & 3.45                      \\ \cline{2-5} 
+                                & 7.5-1.5-1                                & 299.34                    & 45.81                    & 3.13                      \\ \cline{2-5} 
+                                & 8-1.50.5                                 & 91.47                    & 43.87                    & 1.46                      \\ \hline
+  \end{tabular}
+  \caption{LSTM's Evaluation}
+    \label{vcbresult}
+  \end{table}
+
+  % TimesNet Table
+  \begin{table}[H]
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+    \multirow{3}{*}{QCG}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                  & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                  & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+    \end{tabular}
+    \caption{TimesNet's Evaluation}
+      \label{vcbresult}
+    \end{table}
 
 \section{Conclusion}
  Placeholder line

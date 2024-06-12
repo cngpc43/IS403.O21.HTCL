@@ -31,4 +31,19 @@
 /Latex/*.xdv
 /Latex/*.fdb_latexmk
 /Latex/*.synctex\(busy\)
+<<<<<<< HEAD
 **/.DS_Store
+Models/LSTM/LSTM(7-2-1).ipynb
+Latex/TemplatePaper.pdf
+Models/LSTM/LSTM(8-1.5-0.5).ipynb
+Models/LSTM/LSTM(8-1.5-0.5).ipynb
+Latex/TemplatePaper.pdf
+Latex/TemplatePaper.pdf
+Latex/TemplatePaper.tex
+Latex/TemplatePaper.pdf
+=======
+code.ipynb
+desc.ipynb
+timenetcode.ipynb
+**/.DS_Store
+>>>>>>> KhangCode
