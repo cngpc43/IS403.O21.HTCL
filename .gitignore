@@ -33,4 +33,5 @@
 /Latex/*.synctex\(busy\)
 code.ipynb
 desc.ipynb
+timenetcode.ipynb
 **/.DS_Store

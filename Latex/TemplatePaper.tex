@@ -136,7 +136,49 @@ Where:\\
 	\indent\textbullet\ \(\beta_0\) is the intercept term.\\
 	\indent\textbullet\ \(\beta_1,..., \beta_k\) are the regression coefficients for the independent variables.\\
 	\indent\textbullet\ \(\varepsilon\) is the error term.
- 
+\subsection{Random Forest}
+Random forest is a supervised learning algorithm. The “forest” it builds is an ensemble of decision trees, usually trained with the bagging method. The general idea of the bagging method is that a combination of learning models increases the overall result.
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.5\textwidth}
+  \centering
+
+  \includegraphics[width=1\textwidth]{bibliography/Figure/RF_work.png}
+  \caption{Random forest models}
+  \label{fig:1}
+  \end{minipage}
+\end{figure}
+Random forests are also very hard to beat performance-wise. Of course, you can probably always find a model that can perform better — like a neural network, for example — but these usually take more time to develop, though they can handle a lot of different feature types, like binary, categorical and numerical.
+Overall, random forest is a (mostly) fast, simple and flexible tool, but not without some limitations.
+\subsection{GRU}
+GRU is a simplified version of LSTM (Long Short-Term Memory) and has fewer parameters, which helps reduce the time and computational resources required during model training. Both GRU and LSTM belong to the family of advanced recurrent neural network architectures that can retain information over long sequences without encountering gradient degradation issues.
+The structure of GRU consists of two main gates:
+\\
+\indent\textbullet\ Update Gate: Controls the amount of information from the previous hidden state that needs to be carried over to the current state.
+\[
+z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)
+\]
+\indent\textbullet\ Reset Gate: Decides how much of the past information to forget. \\
+\[
+r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)
+\]
+\indent\textbullet\ Current memory content : determines the potential contribution to the updated hidden state, allowing the network to retain or update information effectively.\\
+\[
+\tilde{h}_t = \tanh(W_h \cdot [r_t \odot h_{t-1}, x_t] + b_h)
+\]
+\indent\textbullet\ Final memory at current time step : is the updated hidden state that combines the previous hidden state and the new candidate hidden state based on the update gate's decision. This updated hidden state effectively balances retaining information from the past and incorporating new information from the current time step.\\
+\[
+h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
+\]
+Where:
+\begin{itemize}
+  \item \( h_t \) is the final hidden state at time step \( t \). This represents the updated memory of the network at the current time step.
+  \item \( z_t \) is the update gate vector at time step \( t \). The update gate controls how much of the previous hidden state should be carried forward to the current hidden state.
+  \item \( h_{t-1} \) is the hidden state from the previous time step \( t-1 \). This is the memory of the network from the prior time step.
+  \item \( \tilde{h}_t \) is the candidate hidden state at time step \( t \). It represents the new information that could be added to the hidden state, calculated using the current input and the reset-modified previous hidden state.
+  \item \( \odot \) represents element-wise multiplication. This operation is applied element-wise to vectors or matrices.
+  \item \( 1 - z_t \) is the complement of the update gate vector. It represents the proportion of the previous hidden state that should be retained.
+\end{itemize}
 
 \section{Result}
 Placeholder line
