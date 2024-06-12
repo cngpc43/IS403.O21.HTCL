@@ -252,14 +252,16 @@ Where: \\
 	\indent\textbullet\ \(y_i\)  is the true value.\\
 	\indent\textbullet\ \(\hat{y_i}\) is the predicted value.
 \subsection{DXG Dataset} 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|c|c|c|}
-         
-    \end{tabular}
-    \caption{DXG Dataset's Evaluation}
-    \label{vcbresult}
-\end{table}
+\begin{table}[]
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{Dataset} & \multicolumn{1}{l|}{Train-Test-Validate} & \multicolumn{1}{l|}{RMSE} & \multicolumn{1}{l|}{MDA} & \multicolumn{1}{l|}{MAPE} \\ \hline
+  \multirow{3}{*}{DXG}          & 7-2-1                                    & 251.28                    & 44.95                    & 3.82                      \\ \cline{2-5} 
+                                & 7.5-1.5-1                                & 250.04                    & 48.39                    & 3.59                      \\ \cline{2-5} 
+                                & 8-1.50.5                                 & 167.48                    & 49.68                    & 2.02                      \\ \hline
+  \end{tabular}
+  \end{table}
+
 
 \subsection{VHM dataset} 
 
