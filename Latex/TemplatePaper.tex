@@ -15,7 +15,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
-\title{FFT, TimesNet, and Random Forest in Real Estate Stock Market Analysis}
+\title{A Comparative Analysis of Machine Learning and Deep Learning Models for Real Estate Stock Market Forecasting}
 
 \author{\uppercase{Phan Chi Cuong}\authorrefmark{1},
 \uppercase{Nguyen Le Khang\authorrefmark{2}, and Le Pham Quoc Bao}\authorrefmark{3}}
@@ -29,7 +29,7 @@
 {Author \headeretal: Phan Chi Cuong, Nguyen Le Khang, Le Pham Quoc Bao}
 
 \begin{abstract}
-  This study investigates the effectiveness of Fast Fourier Transform (FFT), Time Series Network (TimeSNet), and Random Forest (RF) models in predicting stock prices within the Vietnamese real estate market.  We apply these models independently to historical daily closing prices of three major real estate companies from 2019 to 2024, exploring how each method contributes to understanding and forecasting stock price movements. FFT is utilized to reveal underlying periodic patterns, TimeSNet to capture temporal dependencies, and RF to provide robust predictions. The results offer insights into the strengths and weaknesses of each model for this specific market, providing valuable information for investors and policymakers.
+  This study shows a detailed comparative analysis of statistical models, machine learning, and deep learning models for predicting real estate stock prices. We check the predictive capabilities of different models like the Autoregressive Integrated Moving Average with Exogenous variables (ARIMAX), Linear Regression, Long Short-Term Memory (LSTM) networks, Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Random Forest (RF), Fast Fourier Transform (FFT), and TimesNet. Using a carefully prepared dataset of historical stock prices and technical indicators, we train and test these models with MAPE, RMSE and Mean Directional Accuracy (MDA). Our results show that deep learning models, like LSTM and GRU, perform better than traditional time series and machine learning models in catching the complex behaviors of real estate stock markets. Also, adding technical indicators as exogenous variables in ARIMAX, using frequency domain analysis with FFT, and applying Linear Regression all improve forecasting accuracy. This research gives useful insights for investors and financial analysts aiming to make informed decisions in the real estate stock market.
 \end{abstract}
 
 \begin{keywords}
@@ -42,9 +42,9 @@
 
 \section{Introduction}
 \label{sec:introduction}
-Time-series forecasting plays a crucial role in decision-making across various domains. Its significance lies in its ability to provide valuable insights into future trends and patterns in time-dependent data. For instance, accurate predictions of stock prices, interest rates, and foreign exchange rates are essential for informed investment decisions in finance. Similarly, healthcare organizations rely on forecasting patient demand and resource utilization to allocate resources effectively and improve patient care. Energy management companies use time series forecasting to optimize energy production, distribution, and consumption. The accuracy and efficiency of time-series forecasting models significantly impact organizational performance and decision-making processes.
+Time-series forecasting is very important in decision-making across many fields. Its value comes from its ability to provide insights about future trends and patterns in time-dependent data. For example, accurate forecasting of stock prices, foreign exchange rates, and interest rates is crucial for making good financial investments. In healthcare, organizations depend on predictions of patient demand and resource use to optimize resources and improve patient care. Energy companies also use time-series forecasting to optimize energy production, distribution, and consumption. The accuracy and efficiency of time-series forecasting models greatly affect organizational performance and decision-making.
 
-In this paper, we explore an innovative approach to enhance time-series forecasting using the Fast Fourier Transform (FFT). The FFT algorithm extracts frequency-domain features from time series data, offering a promising avenue for improving forecast accuracy and computational efficiency. Our investigation involves a comparative analysis of models trained with FFT-based features against traditional time domain features. We apply this approach to predict stock prices of real estate companies, leveraging not only FFT but also other techniques such as TimesNet and Random Forest. Through our study, we shed light on the interpretability of frequency domain features and their relationship with underlying time series patterns, emphasizing the potential of FFT-based feature engineering in enhancing forecasting models.
+In this paper, we explore a new approach to make time-series forecasting better using the Fast Fourier Transform (FFT). The FFT algorithm extracts frequency-domain features from time-series data, offering a promising way to improve forecast accuracy and computational efficiency. Our investigation include a comparative analysis of models trained with FFT-based features against traditional time-domain features. We apply this method to predict stock prices of real estate companies, using not only FFT but also other techniques like TimesNet and Random Forest. Through our study, we highlight the interpretability of frequency-domain features and their relationship with underlying time-series patterns, emphasizing the potential of FFT-based feature engineering to improve forecasting models.
 
 \section{Related Works}
 
@@ -167,19 +167,36 @@ Where:\\
 
 Given the high correlations between the \textit{Close} price and other price-based indicators (\textit{Open}, \textit{High}, \textit{Low}, \textit{SMA\_20}, \textit{EMA\_20}, \textit{BB\_High}, \textit{BB\_Middle}, \textit{BB\_Low}), we will exclude these to avoid multicollinearity issues. The remaining indicators (\textit{Volume}, \textit{Change \%}, \textit{RSI}, \textit{MACD}, \textit{MACD\_Signal}, \textit{MACD\_Diff}, \textit{ATR}, \textit{OBV}) will be considered as potential independent variables in the linear regression model. 
 
-\begin{table}[ht]
+\begin{figure}[ht]
 \centering
-\caption{Correlation Matrix of Filtered Data}
-\label{tab:correlation_matrix}
-\input{}
-\end{table}
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{bibliography/Figure/correlation_arimax.png}
+    \caption{Correlation Matrix of Filtered Data}
+    \label{tab:correlation_matrix}
+  \end{minipage}
+\end{figure}
+
 
 The model was then trained using the preprocessed dataset, and its performance was evaluated using appropriate metrics such as Mean Squared Error (MSE), R-squared, and adjusted R-squared.
 
-The choice of independent variables for the final model was guided by the correlation matrix (Table~\ref{tab:correlation_matrix}), which revealed the strength and direction of linear relationships between the closing price and each indicator. Variables exhibiting higher correlation with the closing price were considered more influential and were prioritized for inclusion in the model.
+The choice of independent variables for the final model was guided by the correlation matrix (Figure~\ref{tab:correlation_matrix}), which revealed the strength and direction of linear relationships between the closing price and each indicator. Variables exhibiting higher correlation with the closing price were considered more influential and were prioritized for inclusion in the model.
 
 By analyzing the estimated coefficients (\( \beta_1, \beta_2, ..., \beta_n \)) of the linear regression model, we can quantify the impact of each technical indicator on the predicted closing price of real estate stocks. This analysis provides valuable insights into the factors that drive the stock's price movements and can inform investment decisions.
-  \subsection{ARIMA}
+  \subsection{ARIMAX}
+  Stock prices, much like weather patterns, exhibit both inherent trends and reactions to external forces. To capture this duality, we employed an Autoregressive Integrated Moving Average with Exogenous variables (ARIMAX) model. Building upon the established ARIMA framework, ARIMAX allows us to weave external factors, or "exogenous variables," into our forecasting tapestry.
+  Mathematically, the ARIMAX model is expressed as:
+  
+  \[y(t) = \alpha + \sum_{i=1}^{p} \beta_i y(t-i) + \sum_{j=1}^{q} \phi_j \varepsilon(t-j) + \sum_{k=1}^{r} \gamma_k x_k(t) + \varepsilon(t)\]
+In our context, $y(t)$ represents the real estate stock price at time (t). The terms  $(\sum_{i=1}^{p} \beta_i y(t-i))$ and $(\sum_{j=1}^{q} \phi_j \varepsilon(t-j))$ capture the autoregressive (AR) and moving average (MA) components, respectively, similar to ARIMA. The added dimension lies in $(\sum_{k=1}^{r} \gamma_k x_k(t))$, where $x_k(t)$ are our carefully curated exogenous variables, namely the technical indicators derived from our preprocessed dataset.
+
+The selection of the ARIMAX model's parameters – the number of AR and MA terms, the order of differencing, and the specific exogenous variables – was a meticulous process. It involved scrutinizing autocorrelation and partial autocorrelation plots, along with consulting information criteria like AIC and BIC.
+
+With the model's architecture finalized, we trained it on our refined dataset, where the closing prices served as the main melody, and the technical indicators provided the counterpoint. We assessed the model's performance using various metrics, including Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and Mean Absolute Percentage Error (MAPE), seeking to minimize these measures of forecasting error.
+
+This ARIMAX model, enriched by the inclusion of exogenous variables, allowed us to not only decipher the inherent rhythm of real estate stock prices but also to anticipate their movements based on the external influences captured by the technical indicators. It represents a step towards a more holistic understanding of the stock market's complex dance.
+
+
   \subsection{RNN}
   \subsection{GRU}
   % LSTM Introduction
