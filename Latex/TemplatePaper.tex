@@ -78,16 +78,16 @@ The data spans a five-year period from March 1, 2019, to March 1, 2024.  While t
     \hline
      \rowcolor{blue!20} & DXG & VHM & QCG \\ \hline
      Observations & 1252 & 0 & 1252 \\ \hline
-     Mean & 17676 & 0 & 7586.17\\ \hline
-     Median & 15348 & 0 & 7105\\ \hline
-     Std & 7862 & 0 & 3102.55\\ \hline
-     Min & 6739 & 0 & 3320\\ \hline
-     Max & 46750 & 0 & 23200\\ \hline
-     25\% & 12303 & 0 & 4960\\ \hline
-     50\% & 15348 & 0 & 7105\\ \hline
-     75\% & 20806 & 0 & 9182.5\\ \hline
-    Skewness & 1.41 & 0 & 1.13\\ \hline
-    Kurtosis & 1.97 & 0 & 1.68\\ \hline
+     Mean & 17676 & 62065.92 & 7586.17\\ \hline
+     Median & 15348 & 61768 & 7105\\ \hline
+     Std & 7862 & 11877.69 & 3102.55\\ \hline
+     Min & 6739 & 38450 & 3320\\ \hline
+     Max & 46750 & 88722 & 23200\\ \hline
+     25\% & 12303 & 53900 & 4960\\ \hline
+     50\% & 15348 & 61768 & 7105\\ \hline
+     75\% & 20806 & 71569 & 9182.5\\ \hline
+    Skewness & 1.41 & -0.04 & 1.13\\ \hline
+    Kurtosis & 1.97 & -0.85 & 1.68\\ \hline
 
      
 \end{tabular}
@@ -108,7 +108,6 @@ The data spans a five-year period from March 1, 2019, to March 1, 2024.  While t
   \label{fig:2}
   \end{minipage}
 \end{figure}
-
 \begin{figure}[H]
   \centering
   \begin{minipage}{0.23\textwidth}
@@ -120,7 +119,7 @@ The data spans a five-year period from March 1, 2019, to March 1, 2024.  While t
   \hfill
   \begin{minipage}{0.23\textwidth}
   \centering
-  \includegraphics[width=1\textwidth]{bibliography/Figure/VHMHistogram.png}
+  \includegraphics[width=1\textwidth]{bibliography/Figure/VHMhist.png}
   \caption{VHM stock price's histogram}
   \label{fig:2}
   \end{minipage}
@@ -164,6 +163,49 @@ Where:\\
 	\indent\textbullet\ \(\varepsilon\) is the error term.
   
   The dataset used for this analysis included stock price data for various real estate companies, spanning a specific time period. The dataset included various technical indicators such as Simple Moving Average (SMA), Exponential Moving Average (EMA), Relative Strength Index (RSI), Moving Average Convergence Divergence (MACD), Bollinger Bands (BB\_High, BB\_Middle, BB\_Low), Average True Range (ATR), and On-Balance Volume (OBV). These indicators were selected as potential independent variables due to their established relevance in technical stock analysis.
+\subsection{Random Forest}
+Random forest is a supervised learning algorithm. The “forest” it builds is an ensemble of decision trees, usually trained with the bagging method. The general idea of the bagging method is that a combination of learning models increases the overall result.
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.5\textwidth}
+  \centering
+
+  \includegraphics[width=1\textwidth]{bibliography/Figure/RF_work.png}
+  \caption{Random forest models}
+  \label{fig:1}
+  \end{minipage}
+\end{figure}
+Random forests are also very hard to beat performance-wise. Of course, you can probably always find a model that can perform better — like a neural network, for example — but these usually take more time to develop, though they can handle a lot of different feature types, like binary, categorical and numerical.
+Overall, random forest is a (mostly) fast, simple and flexible tool, but not without some limitations.
+\subsection{GRU}
+GRU is a simplified version of LSTM (Long Short-Term Memory) and has fewer parameters, which helps reduce the time and computational resources required during model training. Both GRU and LSTM belong to the family of advanced recurrent neural network architectures that can retain information over long sequences without encountering gradient degradation issues.
+The structure of GRU consists of two main gates:
+\\
+\indent\textbullet\ Update Gate: Controls the amount of information from the previous hidden state that needs to be carried over to the current state.
+\[
+z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)
+\]
+\indent\textbullet\ Reset Gate: Decides how much of the past information to forget. \\
+\[
+r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)
+\]
+\indent\textbullet\ Current memory content : determines the potential contribution to the updated hidden state, allowing the network to retain or update information effectively.\\
+\[
+\tilde{h}_t = \tanh(W_h \cdot [r_t \odot h_{t-1}, x_t] + b_h)
+\]
+\indent\textbullet\ Final memory at current time step : is the updated hidden state that combines the previous hidden state and the new candidate hidden state based on the update gate's decision. This updated hidden state effectively balances retaining information from the past and incorporating new information from the current time step.\\
+\[
+h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t
+\]
+Where:
+\begin{itemize}
+  \item \( h_t \) is the final hidden state at time step \( t \). This represents the updated memory of the network at the current time step.
+  \item \( z_t \) is the update gate vector at time step \( t \). The update gate controls how much of the previous hidden state should be carried forward to the current hidden state.
+  \item \( h_{t-1} \) is the hidden state from the previous time step \( t-1 \). This is the memory of the network from the prior time step.
+  \item \( \tilde{h}_t \) is the candidate hidden state at time step \( t \). It represents the new information that could be added to the hidden state, calculated using the current input and the reset-modified previous hidden state.
+  \item \( \odot \) represents element-wise multiplication. This operation is applied element-wise to vectors or matrices.
+  \item \( 1 - z_t \) is the complement of the update gate vector. It represents the proportion of the previous hidden state that should be retained.
+\end{itemize}
 
 Given the high correlations between the \textit{Close} price and other price-based indicators (\textit{Open}, \textit{High}, \textit{Low}, \textit{SMA\_20}, \textit{EMA\_20}, \textit{BB\_High}, \textit{BB\_Middle}, \textit{BB\_Low}), we will exclude these to avoid multicollinearity issues. The remaining indicators (\textit{Volume}, \textit{Change \%}, \textit{RSI}, \textit{MACD}, \textit{MACD\_Signal}, \textit{MACD\_Diff}, \textit{ATR}, \textit{OBV}) will be considered as potential independent variables in the linear regression model. 
 
@@ -198,7 +240,6 @@ This ARIMAX model, enriched by the inclusion of exogenous variables, allowed us 
 
 
   \subsection{RNN}
-  \subsection{GRU}
   % LSTM Introduction
   \subsection{Long Short Term Memory (LSTM)}
 
@@ -252,7 +293,7 @@ Thus, the expressions for each gate of the LSTM illustrate how each gate manages
   % TimesNet Introduction
   \subsection{TimesNet}
   \subsection{Fast Fourier Transform Forecasting Model (FFT)}
-  \subsection{Random Forest}
+
 
  
 \section{Result}
@@ -269,20 +310,44 @@ Where: \\
 	\indent\textbullet\ \(y_i\)  is the true value.\\
 	\indent\textbullet\ \(\hat{y_i}\) is the predicted value.
 \subsection{DXG Dataset} 
+
+% DXG Dataset
 \begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|c|c|c|}
-         
-    \end{tabular}
-    \caption{DXG Dataset's Evaluation}
+  \begin{tabular}{|ccccc|}
+  \hline
+  \multicolumn{5}{|c|}{\textbf{DXG Dataset's Evaluation}}                                                                                                                  \\ \hline
+  \multicolumn{1}{|c|}{Model}                              & \multicolumn{1}{c|}{Training-Testing} & \multicolumn{1}{c|}{RMSE}    & \multicolumn{1}{c|}{MAPE (\%)} & MSLE  \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMA}}             & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{GRU}}               & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{Linear Regression}} & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{LSTM}}              & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{251.28}  & \multicolumn{1}{c|}{3.82}      & 44.95 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{250.04}  & \multicolumn{1}{c|}{3.59}      & 48.39 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{167.48}  & \multicolumn{1}{c|}{2.02}      & 49.68 \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RF}}                & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RNN}}               & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{TimesNet}}          & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{8119.47} & \multicolumn{1}{c|}{10.67}     & 42.17 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{3175.16} & \multicolumn{1}{c|}{21.21}     & 44.08 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{2398.97} & \multicolumn{1}{c|}{16.05}     & 47.31 \\ \hline
+  \end{tabular}
+  \caption{DXG's Evaluation}
     \label{vcbresult}
-\end{table}
+  \end{table}
 
 \subsection{VHM dataset} 
 
 
-
 \subsection{QCG dataset} 
+
 
 \section{Conclusion}
  Placeholder line
