@@ -304,7 +304,7 @@ Placeholder line
 \textbf{Root Mean Squared Error} (RMSE): is the square root of average value of squared error in a set of predicted values.\\
 \[RMSE=\sqrt{\sum_{i=1}^{n} \frac{(\hat{y_i}-y_i )^2}{n} }\]\\
 \textbf{Mean Absolute Error} (MSLE):is the relative difference between the log-transformed actual and predicted values.\\
-\[MSLE=\frac{1}{n}\sum_{i=1}^{n}(log(1+\hat{y_i})-log(log(1+y_i))^2\]
+\[MSLE=\frac{1}{n}\sum_{i=1}^{n}(log(1+\hat{y_i})-log(log(1+y_i))^2\])
 Where: \\
 	\indent\textbullet\ \(n\) is the number of observations in the dataset.\\
 	\indent\textbullet\ \(y_i\)  is the true value.\\
@@ -317,27 +317,27 @@ Where: \\
   \hline
   \multicolumn{5}{|c|}{\textbf{DXG Dataset's Evaluation}}                                                                                                                  \\ \hline
   \multicolumn{1}{|c|}{Model}                              & \multicolumn{1}{c|}{Training-Testing} & \multicolumn{1}{c|}{RMSE}    & \multicolumn{1}{c|}{MAPE (\%)} & MSLE  \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMA}}             & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{GRU}}               & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{Linear Regression}} & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{LSTM}}              & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{251.28}  & \multicolumn{1}{c|}{3.82}      & 44.95 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{250.04}  & \multicolumn{1}{c|}{3.59}      & 48.39 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{167.48}  & \multicolumn{1}{c|}{2.02}      & 49.68 \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{RF}}                & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{RNN}}               & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{TimesNet}}          & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{8119.47} & \multicolumn{1}{c|}{10.67}     & 42.17 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{3175.16} & \multicolumn{1}{c|}{21.21}     & 44.08 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{2398.97} & \multicolumn{1}{c|}{16.05}     & 47.31 \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMA}}             & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{GRU}}               & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{Linear Regression}} & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{LSTM}}              & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{240.04897}  & \multicolumn{1}{c|}{3.15}      & 48.59 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{262.16156}  & \multicolumn{1}{c|}{3.28}      & 50.31 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{205.6617}  & \multicolumn{1}{c|}{2.05}      & 50.0 \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RF}}                & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RNN}}               & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{TimesNet}}          & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{8119.47} & \multicolumn{1}{c|}{10.67}     & 42.17 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{3175.16} & \multicolumn{1}{c|}{21.21}     & 44.08 \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{2398.97} & \multicolumn{1}{c|}{16.05}     & 47.31 \\ \hline
   \end{tabular}
   \caption{DXG's Evaluation}
     \label{vcbresult}
