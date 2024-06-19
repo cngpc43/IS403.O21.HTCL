@@ -317,9 +317,9 @@ Where: \\
   \hline
   \multicolumn{5}{|c|}{\textbf{DXG Dataset's Evaluation}}                                                                                                                  \\ \hline
   \multicolumn{1}{|c|}{Model}                              & \multicolumn{1}{c|}{Training-Testing} & \multicolumn{1}{c|}{RMSE}    & \multicolumn{1}{c|}{MAPE (\%)} & MSLE  \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMA}}             & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMAX}}             & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
   \multicolumn{1}{|c|}{\multirow{3}{*}{GRU}}               & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
   \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
   \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
@@ -344,11 +344,69 @@ Where: \\
   \end{table}
 
 \subsection{VHM dataset} 
-
+\begin{table}[H]
+  \begin{tabular}{|ccccc|}
+  \hline
+  \multicolumn{5}{|c|}{\textbf{VHM Dataset's Evaluation}}                                                                                                                  \\ \hline
+  \multicolumn{1}{|c|}{Model}                              & \multicolumn{1}{c|}{Training-Testing} & \multicolumn{1}{c|}{RMSE}    & \multicolumn{1}{c|}{MAPE (\%)} & MSLE  \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMA}}             & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{GRU}}               & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{Linear Regression}} & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{LSTM}}              & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}      &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}      &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}      &  \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RF}}                & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RNN}}               & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{TimesNet}}          & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}     &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}     &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}     &  \\ \hline
+  \end{tabular}
+  \caption{DXG's Evaluation}
+    \label{vcbresult}
+  \end{table}
 
 \subsection{QCG dataset} 
 
-
+\begin{table}[H]
+  \begin{tabular}{|ccccc|}
+  \hline
+  \multicolumn{5}{|c|}{\textbf{QCG Dataset's Evaluation}}                                                                                                                  \\ \hline
+  \multicolumn{1}{|c|}{Model}                              & \multicolumn{1}{c|}{Training-Testing} & \multicolumn{1}{c|}{RMSE}    & \multicolumn{1}{c|}{MAPE (\%)} & MSLE  \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMAX}}             & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{775.70}        & \multicolumn{1}{c|}{20.68}          &     0.006  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{932.70}        & \multicolumn{1}{c|}{20.90}          &    0.007  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{721.45}        & \multicolumn{1}{c|}{19.67}          &   0.003    \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{GRU}}               & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{Linear Regression}} & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{LSTM}}              & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}      &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}      &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{}      &  \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RF}}                & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{RNN}}               & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
+  \multicolumn{1}{|c|}{\multirow{3}{*}{TimesNet}}          & \multicolumn{1}{c|}{7-3}            & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}     &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-2}        & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}     &  \\ \cline{2-5} 
+  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{9-1}        & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{}     &  \\ \hline
+  \end{tabular}
+  \caption{DXG's Evaluation}
+    \label{vcbresult}
+  \end{table}
 \section{Conclusion}
  Placeholder line
 \subsection{Summary}
