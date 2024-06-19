@@ -212,7 +212,7 @@ Where:
 \centering
   \begin{minipage}{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{bibliography/Figure/correlation_arimax.png}
+    % \includegraphics[width=\textwidth]{bibliography/Figure/correlation_arimax.png}
     \caption{Correlation Matrix of Filtered Data}
     \label{tab:correlation_matrix}
   \end{minipage}
@@ -351,24 +351,23 @@ where:
     \item \(y_i\) represents the actual values.
 \end{itemize}
 \subsection{DXG Dataset} 
-<<<<<<< HEAD
 \begin{table}[H]
   \centering
   \begin{tabular}{|c|c|c|c|c|}
          \hline
          \multicolumn{5}{|c|}{\textbf{DXG Dataset's Evaluation}}\\
          \hline
-         \centering Model & Training:Testing & RMSE & MAPE (\%) & MSLE\\
+         \centering Model & Training:Testing & RMSE & MAPE (\%) & MAE\\
          \hline
          \multirow{2}{*}{LN} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 8:2 & 11729.2 & 10.825 & 0.019 \\ & \textbf{9:1} & \textbf{7933.49} & \textbf{7.47} & \textbf{0.007}\\
          \hline
          \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
          \hline
-         \multirow{2}{*}{GRU} & 7:3 & 648.57 & 1.066 & 0.0002\\ & \textbf{8:2} & \textbf{612.68} & \textbf{1.0074} & \textbf{0.00017}  \\ & 9:1 & 613.20	&0.01023&0.00015\\
+         \multirow{2}{*}{GRU} & \textbf{7:3}& \textbf{715.7} & \textbf{1.015} & \textbf{513.7} \\ & 8:2 & 759.27 & 1.013 & 534.78  \\ & 9:1 & 743.16	&0.969&507.51\\
          \hline
-         \multirow{2}{*}{RNN} & 7:3 &  1185.91 &  2.26 &  0.00066 \\ & \textbf{8:2} &  \textbf{580.55} & \textbf{0.95} &  \textbf{0.00015}\\ & 9:1 & 617.77 & 1.030 & 0.015\\
+         \multirow{2}{*}{RNN} & 7: &  719.14 &  0.99 &  500.41 \\ & 8:2 &  1159.64 & 1.765 &  932.25 \\ & \textbf{9:1} & \textbf{663.95} & \textbf{0.886} & \textbf{464.22} \\
          \hline
-         \multirow{2}{*}{RF} & 7:3	& 734.07 & 1.252 &  0.00027 \\ & \textbf{8:2} & \textbf{696.60} & \textbf{1.22} & \textbf{0.00021} \\ & 9:1 & 813.82 & 1.464 & 0.00025\\
+         \multirow{2}{*}{RF} & \textbf{7:3}	& \textbf{743} & \textbf{1.06} &  \textbf{537.83} \\ & 8:2 & 823.04 & 1.164 & 612.98 \\ & 9:1 & 794 & 1.071 & 562.85\\
          \hline
          \multirow{2}{*}{LTSM} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 7.5-1.5-1 & 604.48 & 3.86 & 45.81 \\ & 8-1.5-0.5 & 399.35	&1.95&52.26\\
          \hline
@@ -378,8 +377,38 @@ where:
          \hline
     \end{tabular}
     \caption{DXG Dataset's Evaluation}
+
     \label{vcbresult}
 \end{table}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.8\linewidth}
+    \centering
+        \includegraphics[width=\linewidth]{bibliography/Figure/GRU_7-3.png}
+    \caption{GRU model’s result with 7:3 splitting proportion}
+    \label{fig28}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.8\linewidth}
+    \centering
+        \includegraphics[width=\linewidth]{bibliography/Figure/RNN_9-1.png}
+    \caption{RNN model’s result with 9:1 splitting proportion}
+    \label{fig28}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.8\linewidth}
+    \centering
+        \includegraphics[width=\linewidth]{bibliography/Figure/RF_7-3.png}
+    \caption{RF model’s result with 7:3 splitting proportion}
+    \label{fig28}
+  \end{minipage}
+\end{figure}
 
 \subsection{VHM dataset} 
 
@@ -389,17 +418,17 @@ where:
            \hline
            \multicolumn{5}{|c|}{\textbf{VHM Dataset's Evaluation}}\\
            \hline
-           \centering Model & Training:Testing & RMSE & MAPE (\%) & MSLE\\
+           \centering Model & Training:Testing & RMSE & MAPE (\%) & MAE\\
            \hline
            \multirow{2}{*}{LN} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 8:2 & 11729.2 & 10.825 & 0.019 \\ & \textbf{9:1} & \textbf{7933.49} & \textbf{7.47} & \textbf{0.007}\\
            \hline
            \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
            \hline
-           \multirow{2}{*}{GRU} & 7:3 & 1789.84 & 2.03 & 0.001\\ & \textbf{8:2} &  \textbf{1383.71} & \textbf{1.59} & \textbf{0.0004}  \\ & 9:1 & 1412.4	&1.54&0.0004\\
+           \multirow{2}{*}{GRU} & \textbf{7:3} & \textbf{1199.35} & \textbf{1.726} & \textbf{816.59} \\ & 8:2 &  1383.71 & 1.59 &678.3 \\ & 9:1 & 1412.4	&1.54&437.64\\
            \hline
-           \multirow{2}{*}{RNN} & 7:3 &  1919.39 &  2.15 & 0.0011 \\ & 8:2 &  1516.528 & 1.769 &  0.0005\\ & \textbf{9:1} & \textbf{1389.80} & \textbf{1.555} & \textbf{0.0004}\\
+           \multirow{2}{*}{RNN} & 7:3 &  1433.18 &  2.451 & 1123.99 \\ & 8:2 &  1027.73 & 1.638 &  712.2\\ & \textbf{9:1} & \textbf{538.78} & \textbf{0.868} & \textbf{362.53} \\
            \hline
-           \multirow{2}{*}{RF} & 7:3	& 1751.89 & 2 &  0.00094 \\ & \textbf{8:2} & \textbf{1539.70} & \textbf{1.83} & \textbf{0.00056} \\ & 9:1 & 1620.2 & 1.81 & 0.00055\\
+           \multirow{2}{*}{RF} & 7:3	& 1751.89 & 5.53 &  416.56 \\ & 8:2 & 1460.66 & 2.67 & 1128.53 \\ & \textbf{9:1} & \textbf{879.48} & \textbf{1.82} & \textbf{759.41}\\
            \hline
            \multirow{2}{*}{LTSM} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 7.5-1.5-1 & 604.48 & 3.86 & 45.81 \\ & 8-1.5-0.5 & 399.35	&1.95&52.26\\
            \hline
@@ -411,7 +440,35 @@ where:
       \caption{VHM Dataset's Evaluation}
       \label{vcbresult}
   \end{table}
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.8\linewidth}
+      \centering
+          \includegraphics[width=\linewidth]{bibliography/Figure/VHMGRU_7-3.png}
+      \caption{GRU model’s result with 7:3 splitting proportion}
+      \label{fig28}
+    \end{minipage}
+  \end{figure}
   
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.8\linewidth}
+      \centering
+          \includegraphics[width=\linewidth]{bibliography/Figure/VHMRNN_9-1.png}
+      \caption{RNN model’s result with 9:1 splitting proportion}
+      \label{fig28}
+    \end{minipage}
+  \end{figure}
+  
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.8\linewidth}
+      \centering
+          \includegraphics[width=\linewidth]{bibliography/Figure/VHMRF_9-1.png}
+      \caption{RF model’s result with 9:1 splitting proportion}
+      \label{fig28}
+    \end{minipage}
+  \end{figure}
 \subsection{QCG dataset} 
 
 \begin{table}[H]
@@ -420,17 +477,17 @@ where:
          \hline
          \multicolumn{5}{|c|}{\textbf{QCG Dataset's Evaluation}}\\
          \hline
-         \centering Model & Training:Testing & RMSE & MAPE (\%) & MSLE\\
+         \centering Model & Training:Testing & RMSE & MAPE (\%) & MAE\\
          \hline
          \multirow{2}{*}{LN} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 8:2 & 11729.2 & 10.825 & 0.019 \\ & \textbf{9:1} & \textbf{7933.49} & \textbf{7.47} & \textbf{0.007}\\
          \hline
          \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
          \hline
-         \multirow{2}{*}{GRU} & 7:3 & 648.57 & 1.535 & 0.00039\\ & 8:2 &  \textbf{563.91} & \textbf{0.009} & \textbf{0.00016}  \\ & 9:1 & 926.86	& 1.614 &0.00044\\
+         \multirow{2}{*}{GRU} & 7:3 & 708.29 & 0.974 & 492.8\\ & 8:2 & 786.29 & 1.023 & 539.05  \\ & \textbf{9:1} & \textbf{665}	& \textbf{0.835} &  \textbf{437.64} \\
          \hline
-         \multirow{2}{*}{RNN} & 7:3 &  1919.39 &  2.15 & 0.0011 \\ & 8:2 &  1516.528 & 1.769 &  0.0005\\ & \textbf{9:1} & \textbf{1389.80} & \textbf{1.555} & \textbf{0.0004}\\
+         \multirow{2}{*}{RNN} & 7:3 &  777.04 &  1.113 & 561.96 \\ & 8:2 &  757.27 & 0.998 &  527.08\\ & \textbf{9:1} & 698.83 & 10043 & 527.0\\
          \hline
-         \multirow{2}{*}{RF} & 7:3	& 827.19 & 1.129 &   0.000317 \\ & \textbf{8:2} & \textbf{566.2} & \textbf{0.92} & \textbf{0.00017} \\ & 9:1 & 838.29 & 1.426 & 0.00036\\
+         \multirow{2}{*}{RF} & \textbf{7:3}	& \textbf{461.24} & \textbf{1.698} & \textbf{983.65} \\ & 8:2 & 1479.93 & 1.709 & 1046.63 \\ & 9:1 & 2378.81 &  2.51 & 1686.66\\
          \hline
          \multirow{2}{*}{LTSM} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 7.5-1.5-1 & 604.48 & 3.86 & 45.81 \\ & 8-1.5-0.5 & 399.35	&1.95&52.26\\
          \hline
@@ -442,58 +499,46 @@ where:
     \caption{QCG Dataset's Evaluation}
     \label{vcbresult}
 \end{table}
-=======
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.8\linewidth}
+    \centering
+        \includegraphics[width=\linewidth]{bibliography/Figure/QCGGRU_9-1.png}
+    \caption{GRU model’s result with 9:1 splitting proportion}
+    \label{fig28}
+  \end{minipage}
+\end{figure}
 
-% DXG Dataset
-\begin{table}[H]
-  \begin{tabular}{|ccccc|}
-  \hline
-  \multicolumn{5}{|c|}{\textbf{DXG Dataset's Evaluation}}                                                                                                                  \\ \hline
-  \multicolumn{1}{|c|}{Model}                              & \multicolumn{1}{c|}{Training-Testing} & \multicolumn{1}{c|}{RMSE}    & \multicolumn{1}{c|}{MAPE (\%)} & MSLE  \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{ARIMA}}             & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{GRU}}               & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{Linear Regression}} & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{LSTM}}              & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{251.28}  & \multicolumn{1}{c|}{3.82}      & 44.95 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{250.04}  & \multicolumn{1}{c|}{3.59}      & 48.39 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{167.48}  & \multicolumn{1}{c|}{2.02}      & 49.68 \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{RF}}                & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{RNN}}               & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{}        & \multicolumn{1}{c|}{}          &       \\ \hline
-  \multicolumn{1}{|c|}{\multirow{3}{*}{TimesNet}}          & \multicolumn{1}{c|}{7-2-1}            & \multicolumn{1}{c|}{8119.47} & \multicolumn{1}{c|}{10.67}     & 42.17 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{7.5-1.5-1}        & \multicolumn{1}{c|}{3175.16} & \multicolumn{1}{c|}{21.21}     & 44.08 \\ \cline{2-5} 
-  \multicolumn{1}{|c|}{}                                   & \multicolumn{1}{c|}{8-1.5-0.5}        & \multicolumn{1}{c|}{2398.97} & \multicolumn{1}{c|}{16.05}     & 47.31 \\ \hline
-  \end{tabular}
-  \caption{DXG's Evaluation}
-    \label{vcbresult}
-  \end{table}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.8\linewidth}
+    \centering
+        \includegraphics[width=\linewidth]{bibliography/Figure/QCGRNN_9-1.png}
+    \caption{RNN model’s result with 9:1 splitting proportion}
+    \label{fig28}
+  \end{minipage}
+\end{figure}
 
-\subsection{VHM dataset} 
-
-
-\subsection{QCG dataset} 
-
->>>>>>> 9453345380150e010c88fe4bd1001a17bd345130
-
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.8\linewidth}
+    \centering
+        \includegraphics[width=\linewidth]{bibliography/Figure/QCGRF_9-1.png}
+    \caption{RF model’s result with 9:1 splitting proportion}
+    \label{fig28}
+  \end{minipage}
+\end{figure}
 \section{Conclusion}
 \subsection{Summary}
 In the pursuit of forecasting stock prices, various methodologies have been explored, ranging from traditional statistical models to advanced machine learning algorithms. Among the examined models, Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), Random Forest, Fast Fourier Transform (FFT), TimesNet, and Auto Regressive Integrated Moving Average (ARIMA) stand out. Notably, RNN, GRU, LSTM, and Random Forest have emerged as the most promising and effective models for predicting stock prices.\\
 The intricacies of stock price forecasting, rooted in the complexity and unpredictability of financial markets, demand models capable of capturing nuanced patterns and relationships within the data. Recurrent Neural Networks (RNN) excel at handling sequential data, offering robust predictions. Gated Recurrent Units (GRU) and Long Short-Term Memory (LSTM) models, with their enhanced ability to capture sequential dependencies, exhibit notable performance in stock price forecasting. Random Forest, with its ensemble learning approach, further refines predictive capabilities by combining multiple decision trees to provide collective insights\\
-As evidenced by evaluation metrics such as RMSE, MAPE, and MSLE, the RNN, GRU, LSTM, and Random Forest models consistently demonstrate superior performance across various aspects of forecasting accuracy. Their adaptability in managing the inherent uncertainties of stock markets positions them as formidable tools for investors and analysts seeking reliable predictions.\\
+As evidenced by evaluation metrics such as RMSE, MAPE, and MAE, the RNN, GRU, LSTM, and Random Forest models consistently demonstrate superior performance across various aspects of forecasting accuracy. Their adaptability in managing the inherent uncertainties of stock markets positions them as formidable tools for investors and analysts seeking reliable predictions.\\
 \subsection{Future Considerations}
 The exploration of forecasting stock prices using Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), Random Forest, Fast Fourier Transform (FFT), TimesNet, and Auto Regressive Integrated Moving Average (ARIMA) models has yielded initial insights, yet the accuracy of these models remains a challenge. To enhance the predictive performance and applicability of these models, several future considerations are warranted:\\
 \indent\textbullet\
 Integrating more diverse and high-frequency data sources, such as social media sentiment, macroeconomic indicators, and real-time news feeds, could enrich the dataset, allowing models to capture a more comprehensive range of market dynamics and improve forecasting accuracy.
 \indent\textbullet\
-Utilizing and possibly developing more comprehensive evaluation metrics beyond RMSE, MAPE, and MSLE to assess model performance can provide deeper insights into their effectiveness and areas needing improvement.
+Utilizing and possibly developing more comprehensive evaluation metrics beyond RMSE, MAPE, and MAE to assess model performance can provide deeper insights into their effectiveness and areas needing improvement.
 \\\indent\textbullet\
 Developing hybrid models that combine the strengths of different approaches could yield better performance. For example, integrating the sequential learning capabilities of RNNs with the ensemble approach of Random Forests could result in models that better capture both short-term and long-term market patterns.
 
