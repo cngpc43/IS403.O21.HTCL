@@ -207,7 +207,6 @@ Where:
   \item \( 1 - z_t \) is the complement of the update gate vector. It represents the proportion of the previous hidden state that should be retained.
 \end{itemize}
 
-Given the high correlations between the \textit{Close} price and other price-based indicators (\textit{Open}, \textit{High}, \textit{Low}, \textit{SMA\_20}, \textit{EMA\_20}, \textit{BB\_High}, \textit{BB\_Middle}, \textit{BB\_Low}), we will exclude these to avoid multicollinearity issues. The remaining indicators (\textit{Volume}, \textit{Change \%}, \textit{RSI}, \textit{MACD}, \textit{MACD\_Signal}, \textit{MACD\_Diff}, \textit{ATR}, \textit{OBV}) will be considered as potential independent variables in the linear regression model. 
 
 \begin{figure}[ht]
 \centering
@@ -240,6 +239,22 @@ This ARIMAX model, enriched by the inclusion of exogenous variables, allowed us 
 
 
   \subsection{RNN}
+  Recurrent Neural Networks (RNNs) are a class of artificial neural networks designed to recognize patterns in sequences of data, such as text, time series data, and speech. Unlike traditional feedforward neural networks, RNNs have connections that form directed cycles, allowing information to persist. This characteristic enables RNNs to exhibit temporal dynamic behavior, making them suitable for tasks where context and sequential data play a critical role.
+  \\ The core concept behind Recurrent Neural Networks (RNNs) is the introduction of a hidden state that captures information about previous inputs. This hidden state is updated at each time step as new inputs are processed. Mathematically, this process can be represented as follows:
+
+  \[
+  h_t = \sigma(W_h \cdot h_{t-1} + W_x \cdot x_t + b)
+  \]
+  
+  where:
+  \begin{itemize}
+      \item $h_t$ is the hidden state at time $t$.
+      \item $W_h$ and $W_x$ are weight matrices.
+      \item $x_t$ is the input at time $t$.
+      \item $b$ is the bias term.
+      \item $\sigma$ is a non-linear activation function (e.g., $\tanh$ or $\text{ReLU}$).
+  \end{itemize}  
+  Recurrent Neural Networks have significantly advanced the field of sequence modeling, enabling numerous applications across diverse domains. Despite their challenges, ongoing research and innovations continue to enhance their performance and applicability. By understanding and addressing the limitations of RNNs, we can unlock their full potential and pave the way for even more sophisticated and capable sequential data models.
   % LSTM Introduction
   \subsection{Long Short Term Memory (LSTM)}
 
@@ -293,9 +308,30 @@ Thus, the expressions for each gate of the LSTM illustrate how each gate manages
   % TimesNet Introduction
   \subsection{TimesNet}
   \subsection{Fast Fourier Transform Forecasting Model (FFT)}
+  The fast Fourier transform (FFT) is a computational tool that transforms time-domain data into the frequency domain by deconstructing the signal into its individual parts: sine and cosine waves. This computation allows engineers to observe the signal’s frequency components rather than the sum of those components.
+  \\ 
+  The FFT forecasting model leverages the fact that any periodic time series can be represented as a sum of sinusoidal functions (sines and cosines) of different frequencies. By transforming the time series data into the frequency domain, we can isolate significant frequencies that capture the underlying periodic patterns.
+ \\
+ Given a time series \( x(t) \), the Fast Fourier Transform (FFT) converts it into the frequency domain \( X(f) \):
 
+\[
+X(f) = \sum_{t=0}^{N-1} x(t) e^{-i 2\pi ft / N}
+\]
 
- 
+where:
+\begin{itemize}
+    \item \( N \) is the number of data points.
+    \item \( f \) represents different frequency components.
+\end{itemize}
+To reconstruct the time series from significant frequencies:
+
+\[
+x(t) = \sum_{f \in F} X(f) e^{i 2\pi ft / N}
+\]
+
+where \( F \) is the set of significant frequencies.
+\\\\
+The Fast Fourier Transform Forecasting Model is a powerful tool for analyzing and forecasting time series data with periodic components. By transforming data into the frequency domain, it enables the identification of significant patterns and trends, offering an efficient and effective approach to time series forecasting.
 \section{Result}
 Placeholder line
 \subsection{Evaluation Methods}
@@ -303,13 +339,110 @@ Placeholder line
 \[MAPE=\frac{100\%}{n}  \sum_{i=1}^{n} |y_i-\hat{y_i} |  = 1 \]\\
 \textbf{Root Mean Squared Error} (RMSE): is the square root of average value of squared error in a set of predicted values.\\
 \[RMSE=\sqrt{\sum_{i=1}^{n} \frac{(\hat{y_i}-y_i )^2}{n} }\]\\
-\textbf{Mean Absolute Error} (MSLE):is the relative difference between the log-transformed actual and predicted values.\\
-\[MSLE=\frac{1}{n}\sum_{i=1}^{n}(log(1+\hat{y_i})-log(log(1+y_i))^2\]
-Where: \\
-	\indent\textbullet\ \(n\) is the number of observations in the dataset.\\
-	\indent\textbullet\ \(y_i\)  is the true value.\\
-	\indent\textbullet\ \(\hat{y_i}\) is the predicted value.
+\textbf{Mean Absolute Error} (MAE):is the relative difference between the log-transformed actual and predicted values.\\
+\[
+MAE = \frac{1}{n} \sum_{i=1}^{n} \left| \hat{y}_i - y_i \right|
+\]
+
+where:
+\begin{itemize}
+    \item \(n\) is the number of observations.
+    \item \(\hat{y}_i\) represents the predicted values.
+    \item \(y_i\) represents the actual values.
+\end{itemize}
 \subsection{DXG Dataset} 
+<<<<<<< HEAD
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}
+         \hline
+         \multicolumn{5}{|c|}{\textbf{DXG Dataset's Evaluation}}\\
+         \hline
+         \centering Model & Training:Testing & RMSE & MAPE (\%) & MSLE\\
+         \hline
+         \multirow{2}{*}{LN} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 8:2 & 11729.2 & 10.825 & 0.019 \\ & \textbf{9:1} & \textbf{7933.49} & \textbf{7.47} & \textbf{0.007}\\
+         \hline
+         \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
+         \hline
+         \multirow{2}{*}{GRU} & 7:3 & 648.57 & 1.066 & 0.0002\\ & \textbf{8:2} & \textbf{612.68} & \textbf{1.0074} & \textbf{0.00017}  \\ & 9:1 & 613.20	&0.01023&0.00015\\
+         \hline
+         \multirow{2}{*}{RNN} & 7:3 &  1185.91 &  2.26 &  0.00066 \\ & \textbf{8:2} &  \textbf{580.55} & \textbf{0.95} &  \textbf{0.00015}\\ & 9:1 & 617.77 & 1.030 & 0.015\\
+         \hline
+         \multirow{2}{*}{RF} & 7:3	& 734.07 & 1.252 &  0.00027 \\ & \textbf{8:2} & \textbf{696.60} & \textbf{1.22} & \textbf{0.00021} \\ & 9:1 & 813.82 & 1.464 & 0.00025\\
+         \hline
+         \multirow{2}{*}{LTSM} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 7.5-1.5-1 & 604.48 & 3.86 & 45.81 \\ & 8-1.5-0.5 & 399.35	&1.95&52.26\\
+         \hline
+         \multirow{2}{*}{TimesNet} & 7:2:1 & 8119.99 & 10.67 & 42.17 \\ & 7.5-1.5-1 & 11519.35 & 15.87 & 41.93 \\ & 8-1.5-0.5 & 3700.29	& 4.21 &43.01\\
+         \hline
+         \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
+         \hline
+    \end{tabular}
+    \caption{DXG Dataset's Evaluation}
+    \label{vcbresult}
+\end{table}
+
+\subsection{VHM dataset} 
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+           \hline
+           \multicolumn{5}{|c|}{\textbf{VHM Dataset's Evaluation}}\\
+           \hline
+           \centering Model & Training:Testing & RMSE & MAPE (\%) & MSLE\\
+           \hline
+           \multirow{2}{*}{LN} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 8:2 & 11729.2 & 10.825 & 0.019 \\ & \textbf{9:1} & \textbf{7933.49} & \textbf{7.47} & \textbf{0.007}\\
+           \hline
+           \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
+           \hline
+           \multirow{2}{*}{GRU} & 7:3 & 1789.84 & 2.03 & 0.001\\ & \textbf{8:2} &  \textbf{1383.71} & \textbf{1.59} & \textbf{0.0004}  \\ & 9:1 & 1412.4	&1.54&0.0004\\
+           \hline
+           \multirow{2}{*}{RNN} & 7:3 &  1919.39 &  2.15 & 0.0011 \\ & 8:2 &  1516.528 & 1.769 &  0.0005\\ & \textbf{9:1} & \textbf{1389.80} & \textbf{1.555} & \textbf{0.0004}\\
+           \hline
+           \multirow{2}{*}{RF} & 7:3	& 1751.89 & 2 &  0.00094 \\ & \textbf{8:2} & \textbf{1539.70} & \textbf{1.83} & \textbf{0.00056} \\ & 9:1 & 1620.2 & 1.81 & 0.00055\\
+           \hline
+           \multirow{2}{*}{LTSM} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 7.5-1.5-1 & 604.48 & 3.86 & 45.81 \\ & 8-1.5-0.5 & 399.35	&1.95&52.26\\
+           \hline
+           \multirow{2}{*}{TimesNet} & 7:2:1 & 8119.99 & 10.67 & 42.17 \\ & 7.5-1.5-1 & 11519.35 & 15.87 & 41.93 \\ & 8-1.5-0.5 & 3700.29	& 4.21 &43.01\\
+           \hline
+           \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
+           \hline
+      \end{tabular}
+      \caption{VHM Dataset's Evaluation}
+      \label{vcbresult}
+  \end{table}
+  
+\subsection{QCG dataset} 
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}
+         \hline
+         \multicolumn{5}{|c|}{\textbf{QCG Dataset's Evaluation}}\\
+         \hline
+         \centering Model & Training:Testing & RMSE & MAPE (\%) & MSLE\\
+         \hline
+         \multirow{2}{*}{LN} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 8:2 & 11729.2 & 10.825 & 0.019 \\ & \textbf{9:1} & \textbf{7933.49} & \textbf{7.47} & \textbf{0.007}\\
+         \hline
+         \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
+         \hline
+         \multirow{2}{*}{GRU} & 7:3 & 648.57 & 1.535 & 0.00039\\ & 8:2 &  \textbf{563.91} & \textbf{0.009} & \textbf{0.00016}  \\ & 9:1 & 926.86	& 1.614 &0.00044\\
+         \hline
+         \multirow{2}{*}{RNN} & 7:3 &  1919.39 &  2.15 & 0.0011 \\ & 8:2 &  1516.528 & 1.769 &  0.0005\\ & \textbf{9:1} & \textbf{1389.80} & \textbf{1.555} & \textbf{0.0004}\\
+         \hline
+         \multirow{2}{*}{RF} & 7:3	& 827.19 & 1.129 &   0.000317 \\ & \textbf{8:2} & \textbf{566.2} & \textbf{0.92} & \textbf{0.00017} \\ & 9:1 & 838.29 & 1.426 & 0.00036\\
+         \hline
+         \multirow{2}{*}{LTSM} & 7:2:1 & 608.64 & 4.27 & 46.33 \\ & 7.5-1.5-1 & 604.48 & 3.86 & 45.81 \\ & 8-1.5-0.5 & 399.35	&1.95&52.26\\
+         \hline
+         \multirow{2}{*}{TimesNet} & 7:2:1 & 8119.99 & 10.67 & 42.17 \\ & 7.5-1.5-1 & 11519.35 & 15.87 & 41.93 \\ & 8-1.5-0.5 & 3700.29	& 4.21 &43.01\\
+         \hline
+         \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
+         \hline
+    \end{tabular}
+    \caption{QCG Dataset's Evaluation}
+    \label{vcbresult}
+\end{table}
+=======
 
 % DXG Dataset
 \begin{table}[H]
@@ -348,13 +481,22 @@ Where: \\
 
 \subsection{QCG dataset} 
 
+>>>>>>> 9453345380150e010c88fe4bd1001a17bd345130
 
 \section{Conclusion}
- Placeholder line
 \subsection{Summary}
-Placeholder
+In the pursuit of forecasting stock prices, various methodologies have been explored, ranging from traditional statistical models to advanced machine learning algorithms. Among the examined models, Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), Random Forest, Fast Fourier Transform (FFT), TimesNet, and Auto Regressive Integrated Moving Average (ARIMA) stand out. Notably, RNN, GRU, LSTM, and Random Forest have emerged as the most promising and effective models for predicting stock prices.\\
+The intricacies of stock price forecasting, rooted in the complexity and unpredictability of financial markets, demand models capable of capturing nuanced patterns and relationships within the data. Recurrent Neural Networks (RNN) excel at handling sequential data, offering robust predictions. Gated Recurrent Units (GRU) and Long Short-Term Memory (LSTM) models, with their enhanced ability to capture sequential dependencies, exhibit notable performance in stock price forecasting. Random Forest, with its ensemble learning approach, further refines predictive capabilities by combining multiple decision trees to provide collective insights\\
+As evidenced by evaluation metrics such as RMSE, MAPE, and MSLE, the RNN, GRU, LSTM, and Random Forest models consistently demonstrate superior performance across various aspects of forecasting accuracy. Their adaptability in managing the inherent uncertainties of stock markets positions them as formidable tools for investors and analysts seeking reliable predictions.\\
 \subsection{Future Considerations}
-Placeholder line
+The exploration of forecasting stock prices using Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), Random Forest, Fast Fourier Transform (FFT), TimesNet, and Auto Regressive Integrated Moving Average (ARIMA) models has yielded initial insights, yet the accuracy of these models remains a challenge. To enhance the predictive performance and applicability of these models, several future considerations are warranted:\\
+\indent\textbullet\
+Integrating more diverse and high-frequency data sources, such as social media sentiment, macroeconomic indicators, and real-time news feeds, could enrich the dataset, allowing models to capture a more comprehensive range of market dynamics and improve forecasting accuracy.
+\indent\textbullet\
+Utilizing and possibly developing more comprehensive evaluation metrics beyond RMSE, MAPE, and MSLE to assess model performance can provide deeper insights into their effectiveness and areas needing improvement.
+\\\indent\textbullet\
+Developing hybrid models that combine the strengths of different approaches could yield better performance. For example, integrating the sequential learning capabilities of RNNs with the ensemble approach of Random Forests could result in models that better capture both short-term and long-term market patterns.
+
 \section*{Acknowledgment}
 \addcontentsline{toc}{section}{Acknowledgment}
 Placeholder line
