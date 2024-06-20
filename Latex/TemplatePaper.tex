@@ -303,6 +303,22 @@ Thus, the expressions for each gate of the LSTM illustrate how each gate manages
 
   % TimesNet Introduction
   \subsection{TimesNet}
+  TimesNet is a recent advancement in machine learning designed specifically for time series analysis tasks. Developed by researchers at Shanghai Jiao Tong University, it tackles the core challenge of capturing temporal variations within data.
+
+  \textbf{Core Idea: Transforming 1D Time Series to 2D Space}
+
+  \noindent
+  Traditional time series models handle data as a single-dimensional sequence. TimesNet breaks this mold by introducing a transformation step. It converts the 1D data into a 2D tensor. This allows the model to capture complex relationships between data points, including both cyclical and inter-cyclical variations.
+  
+  \textbf{The Building Block: TimesBlock}
+
+  \noindent
+  The core building block of TimesNet is the TimesBlock. It is a module that performs the following:
+
+  \textbf{Inception Block}: This block, inspired by the Inception architecture used in image recognition, efficiently extracts features from the transformed 2D tensor. It uses multiple filter sizes within a single layer, allowing it to capture patterns at different scales within the data.
+
+  \indent
+  \textbf{Adaptive Multi-Periodicity Discovery}: TimesNet does not require pre-defining the cyclical patterns in the data. The TimesBlock can automatically discover these periodicities within the 2D representation. This makes TimesNet adaptable to various time series data with different inherent periodicities.
   \subsection{Fast Fourier Transform Forecasting Model (FFT)}
   The fast Fourier transform (FFT) is a computational tool that transforms time-domain data into the frequency domain by deconstructing the signal into its individual parts: sine and cosine waves. This computation allows engineers to observe the signal’s frequency components rather than the sum of those components.
   \\ 
