@@ -77,17 +77,17 @@ The data spans a five-year period from March 1, 2019, to March 1, 2024.  While t
 \begin{tabular}{|>{\columncolor{blue!20}}c|c|c|c|}
     \hline
      \rowcolor{blue!20} & DXG & VHM & QCG \\ \hline
-     Observations & 1252 & 0 & 1252 \\ \hline
-     Mean & 17676 & 62065.92 & 7586.17\\ \hline
-     Median & 15348 & 61768 & 7105\\ \hline
-     Std & 7862 & 11877.69 & 3102.55\\ \hline
-     Min & 6739 & 38450 & 3320\\ \hline
-     Max & 46750 & 88722 & 23200\\ \hline
-     25\% & 12303 & 53900 & 4960\\ \hline
-     50\% & 15348 & 61768 & 7105\\ \hline
-     75\% & 20806 & 71569 & 9182.5\\ \hline
-    Skewness & 1.41 & -0.04 & 1.13\\ \hline
-    Kurtosis & 1.97 & -0.85 & 1.68\\ \hline
+     Observations & 1252 & 1252 & 1252 \\ \hline
+     Mean & 17676 & 17471.91 & 7586.17\\ \hline
+     Median & 15348 & 15624 & 7105\\ \hline
+     Std & 7862 & 7659 & 3102.55\\ \hline
+     Min & 6739 & 6739 & 3320\\ \hline
+     Max & 46750 & 46750 & 23200\\ \hline
+     25\% & 12303 & 12260 & 4960\\ \hline
+     50\% & 15348 & 15624 & 7105\\ \hline
+     75\% & 20806 & 20262 & 9182.5\\ \hline
+    Skewness & 1.41 & 1.49 & 1.13\\ \hline
+    Kurtosis & 1.97 & 2.37 & 1.68\\ \hline
 
      
 \end{tabular}
@@ -303,6 +303,22 @@ Thus, the expressions for each gate of the LSTM illustrate how each gate manages
 
   % TimesNet Introduction
   \subsection{TimesNet}
+  TimesNet is a recent advancement in machine learning designed specifically for time series analysis tasks. Developed by researchers at Shanghai Jiao Tong University, it tackles the core challenge of capturing temporal variations within data.
+
+  \textbf{Core Idea: Transforming 1D Time Series to 2D Space}
+
+  \noindent
+  Traditional time series models handle data as a single-dimensional sequence. TimesNet breaks this mold by introducing a transformation step. It converts the 1D data into a 2D tensor. This allows the model to capture complex relationships between data points, including both cyclical and inter-cyclical variations.
+  
+  \textbf{The Building Block: TimesBlock}
+
+  \noindent
+  The core building block of TimesNet is the TimesBlock. It is a module that performs the following:
+
+  \textbf{Inception Block}: This block, inspired by the Inception architecture used in image recognition, efficiently extracts features from the transformed 2D tensor. It uses multiple filter sizes within a single layer, allowing it to capture patterns at different scales within the data.
+
+  \indent
+  \textbf{Adaptive Multi-Periodicity Discovery}: TimesNet does not require pre-defining the cyclical patterns in the data. The TimesBlock can automatically discover these periodicities within the 2D representation. This makes TimesNet adaptable to various time series data with different inherent periodicities.
   \subsection{Fast Fourier Transform Forecasting Model (FFT)}
   The fast Fourier transform (FFT) is a computational tool that transforms time-domain data into the frequency domain by deconstructing the signal into its individual parts: sine and cosine waves. This computation allows engineers to observe the signal’s frequency components rather than the sum of those components.
   \\ 
@@ -355,7 +371,7 @@ where:
          \hline
          \centering Model & Training:Testing & RMSE & MAPE (\%) & MAE\\
          \hline
-         \multirow{2}{*}{LN} & 7:3 & 1023.75 & 5.06 & 748.41 \\ & 8:2 & 950.44 & 4.06 & 707.96 \\ & \textbf{9:1} & \textbf{843.98} & \textbf{3.25} & \textbf{579.74}\\
+         \multirow{2}{*}{LR} & 7:3 & 1023.75 & 5.06 & 748.41 \\ & 8:2 & 950.44 & 4.06 & 707.96 \\ & \textbf{9:1} & \textbf{843.98} & \textbf{3.25} & \textbf{579.74}\\
          \hline
          \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
          \hline
@@ -365,9 +381,9 @@ where:
          \hline
          \multirow{2}{*}{RF} & \textbf{7:3}	& \textbf{743} & \textbf{1.06} &  \textbf{537.83} \\ & 8:2 & 823.04 & 1.164 & 612.98 \\ & 9:1 & 794 & 1.071 & 562.85\\
          \hline
-         \multirow{2}{*}{LSTM} & 7:3 & 349.41 & 3.29 & 258.12 \\ & 8:2 & 366.39 & 2.86 & 266.34 \\ & 9:1 & 276.20	&2.67&247.25\\
+         \multirow{2}{*}{LSTM} & 7:3 & 349.41 & 3.29 & 258.12 \\ & \textbf{8:2} & \textbf{366.39} & \textbf{2.86} & \textbf{266.34} \\ & 9:1 & 276.20	&2.67&247.25\\
          \hline
-         \multirow{2}{*}{TimesNet} & 7:3 & 4452.34 & 26.31 & 3641.82 \\ & 8:2 & 3425.80 & 18.39 & 2649.99 \\ & 9:1 & 1659.15	& 6.22 &1222.74\\
+         \multirow{2}{*}{TimesNet} & \textbf{7:3} & \textbf{4452.34} & \textbf{26.31} & \textbf{3641.82} \\ & 8:2 & 3425.80 & 18.39 & 2649.99 \\ & 9:1 & 1659.15	& 6.22 &1222.74\\
          \hline
          \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
          \hline
@@ -380,15 +396,31 @@ where:
   \centering
   \begin{minipage}{0.23\textwidth}
   \centering
-  \includegraphics[width=1\textwidth]{bibliography/Figure/GRU_7-3.png}
-  \caption{QCG stock price's boxplot}
+  \includegraphics[width=1\textwidth]{bibliography/Figure/LR_DXG(7-3).png}
+  \caption{LR  model's result with 7:3 splitting proportion}
   \label{fig:1}
   \end{minipage}
   \hfill
   \begin{minipage}{0.23\textwidth}
   \centering
   \includegraphics[width=1\textwidth]{bibliography/Figure/RNN_9-1.png}
-  \caption{QCG stock price's histogram}
+  \caption{RNN model's result with 9:1 splitting proportion}
+  \label{fig:2}
+  \end{minipage}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/GRU_7-3.png}
+  \caption{GRU model's result with 7:3 splitting proportion}
+  \label{fig:1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/RNN_9-1.png}
+  \caption{RNN model's result with 9:1 splitting proportion}
   \label{fig:2}
   \end{minipage}
 \end{figure}
@@ -397,14 +429,14 @@ where:
   \begin{minipage}{0.23\textwidth}
   \centering
   \includegraphics[width=1\textwidth]{bibliography/Figure/RF_7-3.png}
-  \caption{QCG stock price's boxplot}
+  \caption{RF model's result with 7:3 splitting proportion}
   \label{fig:1}
   \end{minipage}
   \hfill
   \begin{minipage}{0.23\textwidth}
   \centering
   \includegraphics[width=1\textwidth]{bibliography/Figure/RNN_9-1.png}
-  \caption{QCG stock price's histogram}
+  \caption{RNN model's result with 9:1 splitting proportion}
   \label{fig:2}
   \end{minipage}
 \end{figure}
@@ -420,7 +452,7 @@ where:
            \hline
            \centering Model & Training:Testing & RMSE & MAPE (\%) & MAE\\
            \hline
-           \multirow{2}{*}{LN} & 7:3 & 2291.01 & 3.71 & 1763.66 \\ & 8:2 & 1815.25 & 3.04 & 1414.67 \\ & \textbf{9:1} & \textbf{1220.21} & \textbf{2.36} & \textbf{988.38}\\
+           \multirow{2}{*}{LR} & 7:3 & 2291.01 & 3.71 & 1763.66 \\ & 8:2 & 1815.25 & 3.04 & 1414.67 \\ & \textbf{9:1} & \textbf{1220.21} & \textbf{2.36} & \textbf{988.38}\\
            \hline
            \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
            \hline
@@ -430,9 +462,9 @@ where:
            \hline
            \multirow{2}{*}{RF} & 7:3	& 1751.89 & 5.53 &  416.56 \\ & 8:2 & 1460.66 & 2.67 & 1128.53 \\ & \textbf{9:1} & \textbf{879.48} & \textbf{1.82} & \textbf{759.41}\\
            \hline
-           \multirow{2}{*}{LSTM} & 7:3 & 714.76 & 9.92 & 561.43 \\ & 8:2 & 767.28 & 11.27 & 612.14 \\ & 9:1 & 471.83	&8.07&404.46\\
+           \multirow{2}{*}{LSTM} & 7:3 & 714.76 & 9.92 & 561.43 \\ & \textbf{8:2} & \textbf{767.28} & \textbf{11.27} & \textbf{612.14} \\ & 9:1 & 471.83	&8.07&404.46\\
            \hline
-           \multirow{2}{*}{TimesNet} & 7:3 & 9397.88 & 14.11 & 7471.31 \\ & 8:2 & 8940.90 & 13.04 & 6908.30 \\ & 9:1 & 4184.75	& 6.93 &3154.99\\
+           \multirow{2}{*}{TimesNet} & \textbf{7:3} & \textbf{9397.88} & \textbf{14.11} & \textbf{7471.31} \\ & 8:2 & 8940.90 & 13.04 & 6908.30 \\ & 9:1 & 4184.75	& 6.93 &3154.99\\
            \hline
            \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
            \hline
@@ -445,15 +477,31 @@ where:
     \centering
     \begin{minipage}{0.23\textwidth}
     \centering
-    \includegraphics[width=1\textwidth]{bibliography/Figure/VHMGRU_7-3.png}
-    \caption{QCG stock price's boxplot}
+    \includegraphics[width=1\textwidth]{bibliography/Figure/LR_VHM(9-1).png}
+    \caption{LR model's result with 9:1 splitting proportion}
     \label{fig:1}
     \end{minipage}
     \hfill
     \begin{minipage}{0.23\textwidth}
     \centering
     \includegraphics[width=1\textwidth]{bibliography/Figure/VHMRNN_9-1.png}
-    \caption{QCG stock price's histogram}
+    \caption{RNN model's result with 9:1 splitting proportion}
+    \label{fig:2}
+    \end{minipage}
+  \end{figure}
+  \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.23\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{bibliography/Figure/VHMGRU_7-3.png}
+    \caption{GRU model's result with 7:3 splitting proportion}
+    \label{fig:1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.23\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{bibliography/Figure/VHMRNN_9-1.png}
+    \caption{RNN model's result with 9:1 splitting proportion}
     \label{fig:2}
     \end{minipage}
   \end{figure}
@@ -463,14 +511,14 @@ where:
     \begin{minipage}{0.23\textwidth}
     \centering
     \includegraphics[width=1\textwidth]{bibliography/Figure/VHMRF_9-1.png}
-    \caption{QCG stock price's boxplot}
+    \caption{RF model's result with 9:1 splitting proportion}
     \label{fig:1}
     \end{minipage}
     \hfill
     \begin{minipage}{0.23\textwidth}
     \centering
     \includegraphics[width=1\textwidth]{bibliography/Figure/VHMRNN_9-1.png}
-    \caption{QCG stock price's histogram}
+    \caption{RNN model's result with 9:1 splitting proportion}
     \label{fig:2}
     \end{minipage}
   \end{figure}
@@ -484,7 +532,7 @@ where:
          \hline
          \centering Model & Training:Testing & RMSE & MAPE (\%) & MAE\\
          \hline
-         \multirow{2}{*}{LN} & 7:3 & 1023.74 & 5.05 & 748.41 \\ & 8:2 & 1036.14 & 7.10 & 781.55 \\ & \textbf{9:1} & \textbf{794.24} & \textbf{4.27} & \textbf{536.38}\\
+         \multirow{2}{*}{LR} & 7:3 & 1023.74 & 5.05 & 748.41 \\ & 8:2 & 1036.14 & 7.10 & 781.55 \\ & \textbf{9:1} & \textbf{794.24} & \textbf{4.27} & \textbf{536.38}\\
          \hline
          \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
          \hline
@@ -494,9 +542,9 @@ where:
          \hline
          \multirow{2}{*}{RF} & \textbf{7:3}	& \textbf{461.24} & \textbf{1.698} & \textbf{983.65} \\ & 8:2 & 1479.93 & 1.709 & 1046.63 \\ & 9:1 & 2378.81 &  2.51 & 1686.66\\
          \hline
-         \multirow{2}{*}{LSTM} & 7:3 & 398.17 & 3.16 & 281.36 \\ & 8:2 & 454.23 & 3.13 & 343.47 \\ & 9:1 & 273.13	&2.47&225.53\\
+         \multirow{2}{*}{LSTM} & 7:3 & 398.17 & 3.16 & 281.36 \\ & \textbf{8:2} & \textbf{454.23} & \textbf{3.13} & \textbf{343.47} \\ & 9:1 & 273.13	&2.47&225.53\\
          \hline
-         \multirow{2}{*}{TimesNet} & 7:3 & 3294.20 & 52.20 & 2837.97 \\ & 8:2 & 2926.75 & 37.63 & 2421.65 \\ & 9:1 & 2329.39	& 16.35 &1897.03\\
+         \multirow{2}{*}{TimesNet} & \textbf{7:3} & \textbf{3294.20} & \textbf{52.20} & \textbf{2837.97} \\ & 8:2 & 2926.75 & 37.63 & 2421.65 \\ & 9:1 & 2329.39	& 16.35 &1897.03\\
          \hline
          \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
          \hline
@@ -510,14 +558,31 @@ where:
   \begin{minipage}{0.23\textwidth}
   \centering
   \includegraphics[width=1\textwidth]{bibliography/Figure/QCGGRU_9-1.png}
-  \caption{QCG stock price's boxplot}
+  \caption{GRU model's result with 9:1 splitting proportion}
   \label{fig:1}
   \end{minipage}
   \hfill
   \begin{minipage}{0.23\textwidth}
   \centering
   \includegraphics[width=1\textwidth]{bibliography/Figure/QCGRNN_9-1.png}
-  \caption{QCG stock price's histogram}
+  \caption{RNN model's result with 9:1 splitting proportion}
+  \label{fig:2}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/QCGGRU_9-1.png}
+  \caption{GRU model's result with 9:1 splitting proportion}
+  \label{fig:1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/QCGRNN_9-1.png}
+  \caption{RNN model's result with 9:1 splitting proportion}
   \label{fig:2}
   \end{minipage}
 \end{figure}
@@ -527,14 +592,14 @@ where:
   \begin{minipage}{0.23\textwidth}
   \centering
   \includegraphics[width=1\textwidth]{bibliography/Figure/QCGRF_9-1.png}
-  \caption{QCG stock price's boxplot}
+  \caption{RF model's result with 9:1 splitting proportion}
   \label{fig:1}
   \end{minipage}
   \hfill
   \begin{minipage}{0.23\textwidth}
   \centering
   \includegraphics[width=1\textwidth]{bibliography/Figure/QCGRNN_9-1.png}
-  \caption{QCG stock price's histogram}
+  \caption{RNN model's result with 9:1 splitting proportion}
   \label{fig:2}
   \end{minipage}
 \end{figure}
