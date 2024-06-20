@@ -118,7 +118,7 @@
 %Defining Pantone SpotColor for blue
 \RequirePackage{color}
 %\ifjtehm
-  \definecolor{ojiescolor}{cmyk}{.01,.56,.97,.03}
+  \definecolor{ojiescolor}{cmyk}{.7,.3,0,.5}
 %  \definecolor{greycolor}{cmyk}{0,0,0,1}
   \definecolor{greycolor}{cmyk}{.71,.62,.55,.12}
 

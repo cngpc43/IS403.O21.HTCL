@@ -15,7 +15,7 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
-\title{A Comparative Analysis of Machine Learning and Deep Learning Models for Real Estate Stock Market Forecasting}
+\title{Comparative Analysis of Statistical, Machine Learning, and Deep Learning Models for Real Estate Stock Market Forecasting}
 
 \author{\uppercase{Phan Chi Cuong}\authorrefmark{1},
 \uppercase{Nguyen Le Khang\authorrefmark{2}, and Le Pham Quoc Bao}\authorrefmark{3}}
@@ -33,8 +33,7 @@
 \end{abstract}
 
 \begin{keywords}
-  Placeholder
-\end{keywords}
+  Real Estate Stock Prices, Statistical Models, Machine Learning, Deep Learning, Autoregressive Integrated Moving Average with Exogenous variable(ARIMAX), Linear Regression, Long Short-Term Memory (LSTM) Networks, Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Random Forest (RF), Fast Fourier Transform (FFT), TimesNet, Mean Absolute Percentage Error (MAPE), Root Mean Square Error (RMSE), Mean Absolute Error (MAE)\end{keywords}
 
 \titlepgskip=-15pt
 
@@ -42,10 +41,11 @@
 
 \section{Introduction}
 \label{sec:introduction}
-Time-series forecasting is very important in decision-making across many fields. Its value comes from its ability to provide insights about future trends and patterns in time-dependent data. For example, accurate forecasting of stock prices, foreign exchange rates, and interest rates is crucial for making good financial investments. In healthcare, organizations depend on predictions of patient demand and resource use to optimize resources and improve patient care. Energy companies also use time-series forecasting to optimize energy production, distribution, and consumption. The accuracy and efficiency of time-series forecasting models greatly affect organizational performance and decision-making.
+The stock market forecasting of real estate companies is a difficult task due to the many economic, financial, and political factors that affect it. Accurate predictions in this area can lead to better investment strategies and more stable economic planning. Traditional methods like time series analysis and machine learning have been used for stock market predictions for a long time. But the rise of deep learning has brought new models that can capture more complex patterns and relationships in the data.
 
-In this paper, we explore a new approach to make time-series forecasting better using the Fast Fourier Transform (FFT). The FFT algorithm extracts frequency-domain features from time-series data, offering a promising way to improve forecast accuracy and computational efficiency. Our investigation include a comparative analysis of models trained with FFT-based features against traditional time-domain features. We apply this method to predict stock prices of real estate companies, using not only FFT but also other techniques like TimesNet and Random Forest. Through our study, we highlight the interpretability of frequency-domain features and their relationship with underlying time-series patterns, emphasizing the potential of FFT-based feature engineering to improve forecasting models.
+In this paper, we do a comparative analysis of different machine learning and deep learning models to predict the stock prices of real estate companies. The models we used include Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), Linear Regression, AutoRegressive Integrated Moving Average with Exogenous inputs (ARIMAX), Fast Fourier Transform (FFT), Random Forest, and TimesNet. Each of these models has their own strengths and weaknesses, and we aim to find out which models perform best for this specific forecasting task.
 
+Our study adds to the existing literature by providing a thorough comparison of these models in the context of real estate stock market forecasting. The results of this analysis can help investors and analysts to make more informed decisions based on the strengths of different predictive models.
 \section{Related Works}
 
 In recent years, many stock prediction models have been researched and many articles have been published, such as: \\
@@ -65,7 +65,7 @@ Adil Moghar, Mhamed Hamiche (2020)\cite{b5}  research about The use of Long Shor
 Amit Gupta and T.J. Nagalakshmi (2019)\cite{b6}, in their paper "Stock Price Prediction using Linear Regression in Machine Learning" (October 2019, International Journal of Innovative Technology and Exploring Engineering), explore the use of linear regression for stock price forecasting. They detail the process of gathering historical data, selecting key features, and constructing a linear regression model. Their findings suggest that linear regression, despite its simplicity, achieves reasonable accuracy in predicting stock prices, making it a valuable tool for financial analysis.\\
 
 K. Ritwik Reddy B. Tarun Kumar V. Along, Rohit Ganesh Polisetty Swetha and Prakash Kumar Sarangi(2022)\cite{b7} have looked into the use of alternative machine learning techniques and linear regression in the prediction of stock prices. Their research demonstrates how well linear regression models historical data including trading volumes and technical indicators to predict stock prices. There are trade-offs between predictive accuracy and model complexity when compared to neural networks support vector machines and ensemble methods. More recently efforts have been made to improve interpretability in dynamic market conditions and strengthen the models resilience against overfitting. In order to address persistent issues in financial forecasting future research directions include investigating hybrid models that combine linear regression with other methodologies.
-
+\\
 Sudhakar Kalva, s.Naganjaneyulu (2020)\cite{b8} investigated stock price prediction by combining LASSO regression ARIMAX and Natural Language Processing (NLP) with finance-related news. They showed that by taking historical data into account and accounting for news impact and market sentiment combining textual analysis of news with conventional statistical models could improve the prediction accuracy of stock prices.\\
 
 Miaomiao Liu, Dan Yao, Zhigang Liu,Jingfeng Guoand Jing Che (2023)\cite{b9}  using adaptive coefficients and composite gradients the suggested algorithm improves on the Adam optimization technique.They also makes use of randomized block coordinate descent to address problems with slow convergence missing global optima and managing high-dimensional vectors. To improve global optimization it predicts gradients uses adaptive coefficients to adjust the gradient deviation and joins current gradients with first-order momentum to form a composite gradient. By using the random block coordinate method computational overhead is decreased. Through simulations on benchmark datasets the new algorithm demonstrates a significant reduction in CPU and memory usage while outperforming six other gradient descent methods in terms of convergence speed and accuracy. The suggested technique for reservoir porosity prediction using BP neural networks shows improved stability accuracy and reduced system overhead with over 86\% of absolute error data falling within 0 percent demonstrating its efficacy.\\
@@ -241,11 +241,11 @@ By analyzing the estimated coefficients (\( \beta_1, \beta_2, ..., \beta_n \)) o
   Mathematically, the ARIMAX model is expressed as:
   
   \[y(t) = \alpha + \sum_{i=1}^{p} \beta_i y(t-i) + \sum_{j=1}^{q} \phi_j \varepsilon(t-j) + \sum_{k=1}^{r} \gamma_k x_k(t) + \varepsilon(t)\]
-In our context, $y(t)$ represents the real estate stock price at time (t). The terms  $(\sum_{i=1}^{p} \beta_i y(t-i))$ and $(\sum_{j=1}^{q} \phi_j \varepsilon(t-j))$ capture the autoregressive (AR) and moving average (MA) components, respectively, similar to ARIMA. The added dimension lies in $(\sum_{k=1}^{r} \gamma_k x_k(t))$, where $x_k(t)$ are our carefully curated exogenous variables, namely the technical indicators derived from our preprocessed dataset.
+In our context, $y(t)$ represents the real estate stock price at time (t). The terms  $(\sum_{i=1}^{p} \beta_i y(t-i))$ and $(\sum_{j=1}^{q} \phi_j \varepsilon(t-j))$ capture the autoregressive (AR) and moving average (MA) components, respectively, similar to ARIMA. The added dimension lies in $(\sum_{k=1}^{r} \gamma_k x_k(t))$, where $x_k(t)$ are our carefully curated exogenous variables, namely the technical indicators derived from our preprocessed dataset.\\
 
-The selection of the ARIMAX model's parameters – the number of AR and MA terms, the order of differencing, and the specific exogenous variables – was a meticulous process. It involved scrutinizing autocorrelation and partial autocorrelation plots, along with consulting information criteria like AIC and BIC.
+The selection of the ARIMAX model's parameters – the number of AR and MA terms, the order of differencing, and the specific exogenous variables – was a meticulous process. It involved scrutinizing autocorrelation and partial autocorrelation plots, along with consulting information criteria like AIC and BIC.\\
 
-With the model's architecture finalized, we trained it on our refined dataset, where the closing prices served as the main melody, and the technical indicators provided the counterpoint. We assessed the model's performance using various metrics, including Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and Mean Absolute Percentage Error (MAPE), seeking to minimize these measures of forecasting error.
+With the model's architecture finalized, we trained it on our refined dataset, where the closing prices served as the main melody, and the technical indicators provided the counterpoint. We assessed the model's performance using various metrics, including Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and Mean Absolute Percentage Error (MAPE), seeking to minimize these measures of forecasting error.\\
 
 This ARIMAX model, enriched by the inclusion of exogenous variables, allowed us to not only decipher the inherent rhythm of real estate stock prices but also to anticipate their movements based on the external influences captured by the technical indicators. It represents a step towards a more holistic understanding of the stock market's complex dance.
 
@@ -386,7 +386,7 @@ where:
          \hline
          \multirow{2}{*}{LR} & 7:3 & 1023.75 & 5.06 & 748.41 \\ & 8:2 & 950.44 & 4.06 & 707.96 \\ & \textbf{9:1} & \textbf{843.98} & \textbf{3.25} & \textbf{579.74}\\
          \hline
-         \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
+         \multirow{2}{*}{ARIMAX} & 7:3&9354& 53.17 &8742.21\\ & 8:2&4348.41&20.75& 3860.00 \\ & \textbf{9:1} & \textbf{2355.16} & \textbf{11.38} & \textbf{2006.81}\\
          \hline
          \multirow{2}{*}{GRU} & \textbf{7:3}& \textbf{715.7} & \textbf{1.015} & \textbf{513.7} \\ & 8:2 & 759.27 & 1.013 & 534.78  \\ & 9:1 & 743.16	&0.969&507.51\\
          \hline
@@ -398,7 +398,7 @@ where:
          \hline
          \multirow{2}{*}{TimesNet} & \textbf{7:3} & \textbf{4344.14} & \textbf{25.61} & \textbf{3567.59} \\ & 8:2 & 3370.33 & 18.06 & 2613.58 \\ & 9:1 & 1668.46	& 6.20 &1231.19\\
          \hline
-         \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
+         \multirow{2}{*}{FFT} & 7:3 & 6346.25 &  32.63&  5436.1 \\ & 8:2 & 5927.6 &  28.66 &  5259.65 \\ & \textbf{9:1} & \textbf{4936.33} & \textbf{23.9} & \textbf{4433.31}\\
          \hline
     \end{tabular}
     \caption{DXG Dataset's Evaluation}
@@ -409,8 +409,8 @@ where:
   \centering
   \begin{minipage}{0.23\textwidth}
   \centering
-  \includegraphics[width=1\textwidth]{bibliography/Figure/LR_DXG(7-3).png}
-  \caption{LR  model's result with 7:3 splitting proportion}
+  \includegraphics[width=1\textwidth]{bibliography/Figure/LR_DXG(9-1).png}
+  \caption{LR  model's result with 9:1 splitting proportion}
   \label{fig:1}
   \end{minipage}
   \hfill
@@ -426,8 +426,8 @@ where:
   \centering
   \begin{minipage}{0.23\textwidth}
   \centering
-  \includegraphics[width=1\textwidth]{bibliography/Figure/LR_DXG(7-3).png}
-  \caption{Another model's result with 7:3 splitting proportion}
+  \includegraphics[width=1\textwidth]{bibliography/Figure/ARIMAX_DXG(9-1).png}
+  \caption{ARIMAX model's result with 9:1 splitting proportion}
   \label{fig:1}
   \end{minipage}
   \hfill
@@ -486,7 +486,7 @@ where:
            \hline
            \multirow{2}{*}{LR} & 7:3 & 2291.01 & 3.71 & 1763.66 \\ & 8:2 & 1815.25 & 3.04 & 1414.67 \\ & \textbf{9:1} & \textbf{1220.21} & \textbf{2.36} & \textbf{988.38}\\
            \hline
-           \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
+           \multirow{2}{*}{ARIMAX} & \textbf{7:3} &\textbf{7732.84} &\textbf{11}&\textbf{5724.74}\\ & 8:2& 9199.75&19.04&8278.95 \\ & 9:1& 9199.75 & 19.04 & 8278.95\\
            \hline
            \multirow{2}{*}{GRU} & \textbf{7:3} & \textbf{1199.35} & \textbf{1.726} & \textbf{816.59} \\ & 8:2 &  1383.71 & 1.59 &678.3 \\ & 9:1 & 1412.4	&1.54&437.64\\
            \hline
@@ -498,7 +498,7 @@ where:
            \hline
            \multirow{2}{*}{TimesNet} & \textbf{7:3} & \textbf{8752.95} & \textbf{13.01} & \textbf{6901.65} \\ & 8:2 & 8731.15 & 12.68 & 6713.77 \\ & 9:1 & 4092.95	& 6.36 &2913.35\\
            \hline
-           \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
+           \multirow{2}{*}{FFT} & \textbf{7:3} & \textbf{6581.06} & \textbf{11.46} &  \textbf{5510.62} \\ & 8:2 & 9263.1 &  18.83 &  8251.64 \\ & 9:1 & 16528.65 & 38.38 & 15958.64\\
            \hline
       \end{tabular}
       \caption{VHM Dataset's Evaluation}
@@ -526,8 +526,8 @@ where:
     \centering
     \begin{minipage}{0.23\textwidth}
     \centering
-    \includegraphics[width=1\textwidth]{bibliography/Figure/LR_DXG(7-3).png}
-    \caption{Another model's result with 7:3 splitting proportion}
+    \includegraphics[width=1\textwidth]{bibliography/Figure/ARIMAX_DXG(7-3).png}
+    \caption{ARIMAX model's result with 7:3 splitting proportion}
     \label{fig:1}
     \end{minipage}
     \hfill
@@ -567,8 +567,8 @@ where:
     \hfill
     \begin{minipage}{0.23\textwidth}
     \centering
-    \includegraphics[width=1\textwidth]{bibliography/Figure/FFT_VHM(9-1).png}
-    \caption{FFT model's result with 9:1 splitting proportion}
+    \includegraphics[width=1\textwidth]{bibliography/Figure/FFT_VHM(7-3).png}
+    \caption{FFT model's result with 7:3 splitting proportion}
     \label{fig:2}
     \end{minipage}
   \end{figure}
@@ -584,7 +584,7 @@ where:
          \hline
          \multirow{2}{*}{LR} & 7:3 & 1023.74 & 5.05 & 748.41 \\ & 8:2 & 1036.14 & 7.10 & 781.55 \\ & \textbf{9:1} & \textbf{794.24} & \textbf{4.27} & \textbf{536.38}\\
          \hline
-         \multirow{2}{*}{ARIMA} & 7:3&11864.3&7.52&0.021\\ & 8:2&8521.33&5.01&0.009 \\ & \textbf{9:1} & \textbf{7006.54} & \textbf{3.73} & \textbf{0.006}\\
+         \multirow{2}{*}{ARIMAX} & 7:3&7070.94 & 59.03 & 5922.51\\ & 8:2& 6176.84 & 48.68 & 5649.47 \\ & \textbf{9:1} & \textbf{2803.88} & \textbf{20.30} & \textbf{2384.16}\\
          \hline
          \multirow{2}{*}{GRU} & 7:3 & 708.29 & 0.974 & 492.8\\ & 8:2 & 786.29 & 1.023 & 539.05  \\ & \textbf{9:1} & \textbf{665}	& \textbf{0.835} &  \textbf{437.64} \\
          \hline
@@ -596,12 +596,29 @@ where:
          \hline
          \multirow{2}{*}{TimesNet} & \textbf{7:3} & \textbf{3259.52} & \textbf{51.75} & \textbf{2808.82} \\ & 8:2 & 2938.94 & 37.76 & 2455.60 \\ & 9:1 & 2488.24	& 17.49 &2024.84\\
          \hline
-         \multirow{2}{*}{FFT} & 7:3 & 941.7588 &  1.7384 &  0.0005 \\ & 8:2 & 939.7588 &  1.6546 &  0.0005 \\ & \textbf{9:1} & \textbf{936.8374} & \textbf{1.6273} & \textbf{0.0005}\\
+         \multirow{2}{*}{FFT} & \textbf{7:3} & \textbf{5854.61} &  \textbf{46} &  \textbf{4724.21} \\ & 8:2 & 6772.32 &  53.6 &  6173.79 \\ & 9:1 & 6855.68 & 48.97 & 6041.34\\
          \hline
     \end{tabular}
     \caption{QCG Dataset's Evaluation}
     \label{vcbresult}
 \end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/LR_DXG(9-1).png}
+  \caption{LR model's result with 9:1 splitting proportion}
+  \label{fig:1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.23\textwidth}
+  \centering
+  \includegraphics[width=1\textwidth]{bibliography/Figure/ARIMAX_DXG(9-1).png}
+  \caption{ARIMAX model's result with 9:1 splitting proportion}
+  \label{fig:2}
+  \end{minipage}
+\end{figure}
 
 \begin{figure}[H]
   \centering
@@ -648,8 +665,8 @@ where:
   \hfill
   \begin{minipage}{0.23\textwidth}
   \centering
-  \includegraphics[width=1\textwidth]{bibliography/Figure/FFT_QCG(9-1).png}
-  \caption{FFT model's result with 9:1 splitting proportion}
+  \includegraphics[width=1\textwidth]{bibliography/Figure/FFT_QCG(7-3).png}
+  \caption{FFT model's result with 7:3 splitting proportion}
   \label{fig:2}
   \end{minipage}
 \end{figure}
@@ -660,17 +677,19 @@ In the pursuit of forecasting stock prices, various methodologies have been expl
 The intricacies of stock price forecasting, rooted in the complexity and unpredictability of financial markets, demand models capable of capturing nuanced patterns and relationships within the data. Recurrent Neural Networks (RNN) excel at handling sequential data, offering robust predictions. Gated Recurrent Units (GRU) and Long Short-Term Memory (LSTM) models, with their enhanced ability to capture sequential dependencies, exhibit notable performance in stock price forecasting. Random Forest, with its ensemble learning approach, further refines predictive capabilities by combining multiple decision trees to provide collective insights\\
 As evidenced by evaluation metrics such as RMSE, MAPE, and MAE, the RNN, GRU, LSTM, and Random Forest models consistently demonstrate superior performance across various aspects of forecasting accuracy. Their adaptability in managing the inherent uncertainties of stock markets positions them as formidable tools for investors and analysts seeking reliable predictions.\\
 \subsection{Future Considerations}
-The exploration of forecasting stock prices using Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), Random Forest, Fast Fourier Transform (FFT), TimesNet, and Auto Regressive Integrated Moving Average (ARIMA) models has yielded initial insights, yet the accuracy of these models remains a challenge. To enhance the predictive performance and applicability of these models, several future considerations are warranted:\\
-\indent\textbullet\
-Integrating more diverse and high-frequency data sources, such as social media sentiment, macroeconomic indicators, and real-time news feeds, could enrich the dataset, allowing models to capture a more comprehensive range of market dynamics and improve forecasting accuracy.
-\indent\textbullet\
-Utilizing and possibly developing more comprehensive evaluation metrics beyond RMSE, MAPE, and MAE to assess model performance can provide deeper insights into their effectiveness and areas needing improvement.
+The exploration of forecasting stock prices using Recurrent Neural Networks (RNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), Random Forest, Fast Fourier Transform (FFT), TimesNet, and AutoRegressive Integrated Moving Average (ARIMA) models has given some initial insights, yet the accuracy of these models is still a challenge. To improve the predictive performance and usefulness of these models, several future considerations are needed:
 \\\indent\textbullet\
-Developing hybrid models that combine the strengths of different approaches could yield better performance. For example, integrating the sequential learning capabilities of RNNs with the ensemble approach of Random Forests could result in models that better capture both short-term and long-term market patterns.
-
+Integrating more diverse and high-frequence data sources like social media sentiment, macroeconomic indicators, and real-time news feeds could make the dataset richer. This would allow models to capture a more comprehansive range of market dynamics and improve forecasting accuracy.
+\\\indent\textbullet\
+Using and possibly developing more comprehensive evaluation metrics beyond RMSE, MAPE, and MAE to assess model performance can give deeper insights into their effectiveness and areas needing improvement.
+\\\indent\textbullet\
+Creating hybrid models that combine the strenghts of different approaches could lead to better performance. For example, integrating the sequential learning capabilities of RNNs with the ensemble approach of Random Forests could result in models that better capture both short-term and long-term market patterns.
+\\\indent\textbullet\
+These future considerations aim to address the current limitations and explore new ways to improve the effectiveness of stock price forecasting models.
 \section*{Acknowledgment}
 \addcontentsline{toc}{section}{Acknowledgment}
-Placeholder line
+First and foremost, we would like to express our sincere gratitude to \textbf{Assoc. Prof. Dr. Nguyen Dinh Thuan} ,\textbf{Mr. Nguyen Minh Nhut} and \textbf{Ms. Dang Vu Phuong Uyen} for their exceptional guidance, expertise, and invaluable feedback throughout the research process. Their mentorship and unwavering support have been instrumental in shaping the direction and quality of this study. Their profound knowledge, critical insights, and attention to detail have significantly contributed to the success of this research.
+\\This research would not have been possible without the support and contributions of our mentors. We would like to extend our heartfelt thanks to everyone involved for their invaluable assistance, encouragement, and belief in our research. Thank you all for your invaluable assistance and encouragement
 
 %% UNCOMMENT these lines below (and remove the 2 commands above) if you want to embed the bibliografy.
 \begin{thebibliography}{00}
