@@ -31,7 +31,7 @@
 /Latex/*.xdv
 /Latex/*.fdb_latexmk
 /Latex/*.synctex\(busy\)
-<<<<<<< HEAD
+/Latex/TemplatePaper.pdf
 **/.DS_Store
 Models/LSTM/LSTM(7-2-1).ipynb
 Latex/TemplatePaper.pdf
@@ -41,12 +41,6 @@ Latex/TemplatePaper.pdf
 Latex/TemplatePaper.pdf
 Latex/TemplatePaper.tex
 Latex/TemplatePaper.pdf
-=======
-code.ipynb
-desc.ipynb
-timenetcode.ipynb
-**/.DS_Store
->>>>>>> KhangCode
 Latex/bibliography/Figure/VHMboxplot.png
 Latex/bibliography/Figure/VHMboxplot.png
 Latex/TemplatePaper.pdf
